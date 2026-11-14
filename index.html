@@ -150,6 +150,11 @@ a.copy{display:inline-flex;align-items:center;justify-content:center;min-width:3
 .act-ic svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 @media (pointer:coarse){.act-ic{width:42px;height:42px}}
 @media (max-width:640px){.item-act{justify-content:flex-start}}
+.mail-ai{background:var(--accent-soft);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:10px}
+.ml-cu{min-height:220px!important}
+.ml-firma summary{cursor:pointer;font-size:12.5px;color:var(--muted);font-weight:500}
+.ml-firma textarea{margin-top:6px;width:100%;border:1px solid var(--line);border-radius:7px;padding:7px 9px;background:var(--surface);resize:vertical}
+.ml-ask{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 a.copy svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .qbtn{display:none}
 .phase-nav{display:none}
@@ -397,7 +402,7 @@ aside.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);backgro
   <nav class="tabs" id="tabs">
     <a href="#embudo" data-v="embudo">Embudo</a>
     <button class="tab-cfg" data-cfgv="embudo" data-cfgtab="fases" aria-label="Configurar las columnas del embudo" data-tip="Configurar las columnas del embudo" hidden><svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></button>
-    <a href="#lista" data-v="lista">Lista</a>
+    <a href="#lista" data-v="lista">Empresas</a>
     <button class="tab-cfg" data-cfgv="lista" data-cfgtab="campos" aria-label="Configurar los campos de la empresa" data-tip="Configurar los campos de la empresa" hidden><svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></button>
     <a href="#agenda" data-v="agenda">Agenda <span class="count" id="agcount" hidden></span></a>
   </nav>
@@ -963,6 +968,7 @@ function renderAgenda(){
       </div>`}).join('')||'<div class="nothing">Nada por aquí.</div>'}</div>
     </section>`}).join('')}</div>`;
   $$('[data-open]').forEach(b=>b.onclick=()=>openDrawer(b.dataset.open));
+  $$('[data-mail]').forEach(a=>a.onclick=ev=>{ev.preventDefault();openMail(a.dataset.mail)});
   $$('[data-log]').forEach(b=>b.onclick=()=>{const e=byId(b.dataset.log);openDrawer(e.id,e.accionFecha?'log':'accion')});
 }
 
@@ -980,14 +986,14 @@ function setEstado(e,to,keep){
 const ICON_TEL='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>';
 const ICON_MAIL='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>';
 const ICON_WEB='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>';
-const ACT={tel:{t:'Llamar',i:ICON_TEL},email:{t:'Escribir un email',i:ICON_MAIL},url:{t:'Abrir la web',i:ICON_WEB}};
+const ACT={tel:{t:'Llamar',i:ICON_TEL},email:{t:'Escribir un email (con ayuda de IA)',i:ICON_MAIL},url:{t:'Abrir la web',i:ICON_WEB}};
 const webHref=v=>{v=String(v||'').trim();return !v?'':/^https?:\/\//i.test(v)?v:'https://'+v};
 const actHref=(t,v)=>t==='tel'?'tel:'+String(v||'').replace(/[^\d+]/g,''):t==='url'?webHref(v):'mailto:'+String(v||'').trim();
 // Agenda: iconos de contacto (teléfono, email y web) cuando la empresa tiene el dato
 function agendaActs(e){
   let h='';
   if(e.telefono&&visible('telefono'))h+=`<a class="act-ic" href="${esc(actHref('tel',e.telefono))}" aria-label="Llamar a ${esc(e.nombre)}" data-tip="Llamar · ${esc(e.telefono)}">${ICON_TEL}</a>`;
-  if(e.email&&visible('email'))h+=`<a class="act-ic" href="${esc(actHref('email',e.email))}" aria-label="Escribir a ${esc(e.nombre)}" data-tip="Escribir · ${esc(e.email)}">${ICON_MAIL}</a>`;
+  if(e.email&&visible('email'))h+=`<a class="act-ic" href="${esc(actHref('email',e.email))}" data-mail="${e.id}" aria-label="Escribir a ${esc(e.nombre)}" data-tip="Escribir con ayuda de IA · ${esc(e.email)}">${ICON_MAIL}</a>`;
   if(e.web&&visible('web'))h+=`<a class="act-ic" href="${esc(webHref(e.web))}" target="_blank" rel="noopener noreferrer" aria-label="Abrir la web de contacto de ${esc(e.nombre)}" data-tip="Web de contacto">${ICON_WEB}</a>`;
   return h;
 }
@@ -1085,6 +1091,7 @@ function bindDrawer(e){
     const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1400)};
     try{navigator.clipboard.writeText(inp.value).then(done,()=>inp.select())}catch(err){inp.select()}
   });
+  $$('#drawer [data-act][data-kind="email"]').forEach(a=>a.onclick=ev=>{ev.preventDefault();if(String(e.email||'').trim())openMail(e.id)});
   $('#borrar').onclick=()=>{
     S.empresas=S.empresas.filter(x=>x.id!==e.id);const rec=save();closeDrawer(true);
     toast(`«${e.nombre||'Empresa'}» eliminada`,6000,rec?UNDO:null);
@@ -1100,7 +1107,7 @@ function closeDrawer(skip){
 
 /* ---------- Ventana genérica ---------- */
 function showModal(){$('#modal').hidden=false;$('#moverlay').hidden=false}
-function closeModal(){$('#modal').hidden=true;$('#moverlay').hidden=true;imp=null;pendingDel=null;modalKind=''}
+function closeModal(){$('#modal').hidden=true;$('#moverlay').hidden=true;imp=null;pendingDel=null;modalKind='';if(typeof afterKey!=='undefined')afterKey=null}
 
 /* ---------- Configurar: columnas y campos ---------- */
 let cfgTab='fases', pendingDel=null;
@@ -1153,13 +1160,13 @@ function camposCfg(){
       <input type="text" id="cl-${c.key}" data-cl="${c.key}" value="${esc(c.label)}" aria-label="Nombre del campo">
       ${c.builtin?`<span class="fixed">${c.tipo==='ciclos'?'Opciones':TIPOS[c.tipo]}</span>`:`<select id="ct-${c.key}" data-ct="${c.key}" aria-label="Tipo de dato">${Object.entries(TIPOS).map(([k,t])=>`<option value="${k}" ${c.tipo===k?'selected':''}>${t}</option>`).join('')}</select>`}
       <select id="cg-${c.key}" data-cg="${c.key}" aria-label="Sección de la ficha">${Object.entries(GRUPOS).map(([k,t])=>`<option value="${k}" ${(c.grupo||'otros')===k?'selected':''}>${t}</option>`).join('')}</select>
-      <label class="chk"><input type="checkbox" id="cli-${c.key}" data-cli="${c.key}" ${c.lista?'checked':''}> En la lista</label>
+      <label class="chk"><input type="checkbox" id="cli-${c.key}" data-cli="${c.key}" ${c.lista?'checked':''}> En la tabla</label>
       <button class="btn sm" data-cdel="${c.key}">Quitar</button>
       ${c.tipo==='ciclos'?`<div class="opts"><label for="co-${c.key}">Opciones:</label><input type="text" id="co-${c.key}" data-co="${c.key}" value="${esc((c.opciones||[]).join(', '))}" placeholder="SMR, ASIR, DAW, DAM"></div>`:''}
     </div>`;
   }).join('');
   const missing=S.campos.filter(c=>c.builtin&&!c.visible);
-  return `<p class="m-hint">Los campos son los datos que guardas de cada empresa. Aparecen en la ficha, en la sección que elijas, y en la lista si marcas «En la lista». El nombre, la próxima acción, el motivo y el historial siempre están.</p>
+  return `<p class="m-hint">Los campos son los datos que guardas de cada empresa. Aparecen en la ficha, en la sección que elijas, y en la tabla de la pestaña Empresas si marcas «En la tabla». El nombre, la próxima acción, el motivo y el historial siempre están.</p>
     <div class="cfg-head cfg-row campo" style="border:0;padding-block:0"><span>Orden</span><span>Nombre</span><span>Tipo</span><span>Sección</span><span></span><span></span></div>
     <div class="cfg-list">
       <div class="cfg-row campo locked"><span></span><span>Nombre de la empresa</span><span class="fixed">Texto</span><span class="fixed">Cabecera</span><span class="fixed">Siempre</span><span></span></div>
@@ -1585,7 +1592,7 @@ function renderAIKey(err){
     const k=$('#ai-k').value.trim();
     if(!k){renderAIKey('Escribe tu clave.');return}
     if(!/^sk-ant-/.test(k)){renderAIKey('La clave debería empezar por «sk-ant-». Comprueba que la has copiado entera.');return}
-    setAICfg({key:k,model:$('#ai-m').value});openAI();
+    setAICfg({key:k,model:$('#ai-m').value});const nx=afterKey||openAI;afterKey=null;nx();
   };
   $('#ai-save').onclick=go;
   $('#ai-k').onkeydown=ev=>{if(ev.key==='Enter')go()};
@@ -1821,6 +1828,89 @@ async function sendFeedback(){
   if(modalKind==='feedback')renderFeedback();else toast('Comentario enviado. ¡Gracias!');
 }
 
+/* ---------- Escribir emails con ayuda de IA ---------- */
+let mail=null,afterKey=null,smP=null;
+const ICON_AI='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>';
+const TONOS={formal:'Formal',cercano:'Cercano',breve:'Breve'};
+// Dentro de claude.ai usa tu cuenta de Claude; fuera, tu clave de la API
+function getSample(){if(!smP)smP=(window.claude&&typeof window.claude.use==='function')?Promise.resolve(window.claude.use('sample')).catch(()=>null):Promise.resolve(null);return smP}
+const firma=()=>{try{return localStorage.getItem('embudo-ffe-firma')||''}catch(e){return ''}};
+function openMail(id){
+  const e=byId(id);if(!e)return;
+  if(!mail||mail.id!==id)mail={id,obj:e.accion||'',tono:'formal',asunto:'',cuerpo:'',status:'idle',err:'',ask:false};
+  mail.ask=false;modalKind='mail';renderMail();showModal();
+}
+function renderMail(){
+  const e=byId(mail.id);if(!e){closeModal();return}
+  const m=$('#modal'),load=mail.status==='loading',f=firma();
+  m.innerHTML=`<div class="m-head"><h2>Escribir a ${esc(e.contacto||e.nombre)}</h2><button class="btn ghost" data-close aria-label="Cerrar">✕</button></div>
+    <div class="m-body">
+      <div class="restore"><span>Para: <b style="color:var(--ink)">${esc(e.email)}</b>${e.contacto?` · ${esc(e.nombre)}`:''}</span></div>
+      <div class="mail-ai">
+        <div class="field"><label for="ml-obj">Qué quieres conseguir con este correo</label><input id="ml-obj" type="text" value="${esc(mail.obj)}" placeholder="Ej.: presentar la FFE y pedir una reunión" ${load?'disabled':''}></div>
+        <div class="ai-row"><div class="fb-opts" role="radiogroup" aria-label="Tono">${Object.entries(TONOS).map(([k,t])=>`<button type="button" role="radio" aria-checked="${mail.tono===k}" data-tono="${k}" ${load?'disabled':''}>${t}</button>`).join('')}</div>
+          <span style="flex:1"></span><button class="btn primary" id="ml-ai" ${load?'disabled':''}>${ICON_AI} ${load?'Redactando…':mail.cuerpo.trim()?'Volver a redactar':'Redactar con IA'}</button></div>
+      </div>
+      ${load?'<div class="loading"><span class="spin"></span><span>Escribiendo el borrador con los datos de la empresa y su historial…</span></div>':''}
+      ${mail.err?`<div class="err">${esc(mail.err)}</div>`:''}
+      <div class="field"><label for="ml-as">Asunto</label><input id="ml-as" type="text" value="${esc(mail.asunto)}" ${load?'disabled':''}></div>
+      <div class="field"><label for="ml-cu">Mensaje</label><textarea id="ml-cu" class="ml-cu" ${load?'disabled':''} placeholder="Escríbelo tú o pulsa «Redactar con IA» para tener un borrador.">${esc(mail.cuerpo)}</textarea></div>
+      <details class="ml-firma" ${f?'':'open'}><summary>Tu firma${f?'':' (escríbela una vez y se añadirá a los borradores)'}</summary><textarea id="ml-fi" rows="3" placeholder="Nombre y apellidos&#10;Tutor/a de FFE · Departamento de Informática&#10;Nombre del centro">${esc(f)}</textarea></details>
+      ${mail.ask?`<div class="ok-box ml-ask"><span>¿Has enviado el correo?</span><button class="btn sm primary" id="ml-reg">Anotarlo en el historial</button><button class="btn sm" id="ml-no">Todavía no</button></div>`:''}
+    </div>
+    <div class="m-foot"><button class="btn" id="ml-copy">Copiar</button><button class="btn primary" id="ml-open">${ICON_MAIL} Abrir en mi correo</button></div>`;
+  m.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);
+  $('#ml-obj').oninput=ev=>mail.obj=ev.target.value;
+  $('#ml-as').oninput=ev=>mail.asunto=ev.target.value;
+  $('#ml-cu').oninput=ev=>mail.cuerpo=ev.target.value;
+  $('#ml-fi').oninput=ev=>{try{localStorage.setItem('embudo-ffe-firma',ev.target.value)}catch(e){}};
+  m.querySelectorAll('[data-tono]').forEach(b=>b.onclick=()=>{mail.tono=b.dataset.tono;m.querySelectorAll('[data-tono]').forEach(x=>x.setAttribute('aria-checked',String(x===b)))});
+  $('#ml-ai').onclick=draftMail;
+  $('#ml-copy').onclick=()=>{
+    const t=(mail.asunto.trim()?mail.asunto.trim()+'\n\n':'')+mail.cuerpo;if(!t.trim())return;
+    const b=$('#ml-copy'),done=()=>{b.textContent='Copiado';setTimeout(()=>{if(b.isConnected)b.textContent='Copiar'},1400)};
+    try{navigator.clipboard.writeText(t).then(done,()=>{})}catch(err){}
+  };
+  $('#ml-open').onclick=()=>{
+    if(!mail.cuerpo.trim()&&!mail.asunto.trim()){$('#ml-cu').focus();return}
+    const u=`mailto:${encodeURIComponent(e.email).replace(/%40/g,'@')}?subject=${encodeURIComponent(mail.asunto)}&body=${encodeURIComponent(mail.cuerpo)}`;
+    const a=document.createElement('a');a.href=u;document.body.appendChild(a);a.click();a.remove();
+    mail.ask=true;renderMail();
+  };
+  $('#ml-reg')?.addEventListener('click',regMail);
+  $('#ml-no')?.addEventListener('click',()=>{mail.ask=false;renderMail()});
+}
+async function draftMail(){
+  const e=byId(mail.id);if(!e)return;
+  mail.obj=$('#ml-obj').value.trim();mail.asunto=$('#ml-as').value;mail.cuerpo=$('#ml-cu').value;
+  const sm=await getSample(),cfg=aiCfg();
+  if(!sm&&!cfg.key){afterKey=()=>openMail(mail.id);openAIKey();return}
+  mail.status='loading';mail.err='';renderMail();
+  const datos=S.campos.filter(c=>c.visible&&!['email','ultimo'].includes(c.key)).map(c=>{let v=e[c.key];if(Array.isArray(v))v=v.join(', ');v=String(v??'').trim();return v?`${c.label}: ${v.slice(0,600)}`:''}).filter(Boolean).join('\n');
+  const hist=(e.historial||[]).filter(h=>!h.sys).slice(0,8).map(h=>`- ${fmtES(h.fecha)}: ${h.texto}`).join('\n')||'(sin contactos anteriores)';
+  const system=`Redactas correos para un tutor o tutora de un centro de Formación Profesional en España que busca empresas para la Formación en Empresa (FFE) de su alumnado. Escribe en español de España, claro, respetuoso y natural. No inventes datos ni prometas nada que no esté en la información. Si falta el nombre de la persona de contacto, usa un saludo general. Devuelve SOLO un objeto JSON con las claves "asunto" y "cuerpo" (texto plano, sin markdown, con saltos de línea). Si hay firma, termina el cuerpo con ella tal cual.`;
+  const user=`Empresa: ${e.nombre}\nFase del embudo: ${label(e.estado)}\n${datos}\nPróxima acción anotada: ${e.accion||'—'}\nHistorial de contactos (más reciente primero):\n${hist}\n\nObjetivo del correo: ${mail.obj||e.accion||'Presentar la FFE y proponer colaboración'}\nTono: ${TONOS[mail.tono]}${mail.tono==='breve'?' (máximo 6 líneas)':''}\nFirma:\n${firma()||'(sin firma)'}`;
+  try{
+    let txt='';
+    if(sm){const r=await sm(system+'\n\n'+user);txt=(r&&r.text)||''}
+    else{const r=await callAPI({model:cfg.model,max_tokens:4000,system,messages:[{role:'user',content:user}]},cfg.key);txt=(r.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n')}
+    const j=JSON.parse((txt.match(/\{[\s\S]*\}/)||['{}'])[0]);
+    if(!j.cuerpo)throw new SyntaxError('vacío');
+    mail.asunto=String(j.asunto||'');mail.cuerpo=String(j.cuerpo);mail.status='idle';
+  }catch(err){
+    mail.status='idle';
+    if(err&&err.status===401){afterKey=()=>openMail(mail.id);openAIKey('La clave no es válida o ha caducado. Escribe una nueva.');return}
+    mail.err=err instanceof SyntaxError?'La IA no ha devuelto un borrador válido. Prueba otra vez.':err&&err.code?(err.code==='not_granted'?'No has dado permiso para usar Claude en esta página.':'No se ha podido usar Claude ahora mismo. Inténtalo en un momento.'):aiErr(err||{});
+  }
+  if(modalKind==='mail')renderMail();
+}
+function regMail(){
+  const e=byId(mail.id);if(!e)return;const as=mail.asunto.trim();
+  (e.historial=e.historial||[]).unshift({fecha:TODAY,texto:`Email enviado${as?`: «${as}»`:''}`});
+  if(visible('ultimo'))e.ultimo=TODAY;
+  save();mail=null;closeModal();renderAll();openDrawer(e.id,isClosed(e.estado)?null:'accion');toast('Anotado en el historial. Revisa la próxima acción.');
+}
+
 /* ---------- Toast ---------- */
 let toastT;
 function toast(m,ms=2600,act){
@@ -1901,6 +1991,7 @@ if('serviceWorker' in navigator&&location.protocol==='https:'&&!/claude/i.test(l
 $('#ia').onclick=openAI;
 $$('[data-cfgtab]').forEach(b=>b.onclick=()=>openConfig(b.dataset.cfgtab));
 $('#exportar').onclick=openExport;
+getSample();
 if(FEEDBACK_URL){$('#feedback').hidden=false;$('#feedback').onclick=openFeedback}
 getDownloads();
 $('#vaciar').onclick=()=>{S.empresas=S.empresas.filter(e=>!e.ejemplo);save();renderAll();toast('Ejemplos quitados',6000,UNDO)};
