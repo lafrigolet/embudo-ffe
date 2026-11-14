@@ -433,10 +433,11 @@ const DEF_CAMPOS=[
   {key:'cargo',label:'Cargo',tipo:'text',grupo:'contacto',lista:false},
   {key:'telefono',label:'Teléfono',tipo:'tel',grupo:'contacto',lista:true},
   {key:'email',label:'Email',tipo:'email',grupo:'contacto',lista:false},
+  {key:'web',label:'Web de contacto',tipo:'url',grupo:'contacto',lista:false},
   {key:'ultimo',label:'Último contacto',tipo:'date',grupo:'contacto',lista:true},
   {key:'notas',label:'Notas',tipo:'textarea',grupo:'notas',lista:false}
 ].map(c=>({...c,builtin:true,visible:true}));
-const TIPOS={text:'Texto',textarea:'Texto largo',number:'Número',date:'Fecha',email:'Email',tel:'Teléfono'};
+const TIPOS={text:'Texto',textarea:'Texto largo',number:'Número',date:'Fecha',email:'Email',tel:'Teléfono',url:'Enlace web'};
 const GRUPOS={empresa:'Empresa',contacto:'Persona de contacto',otros:'Otros datos',notas:'Notas'};
 const clone=o=>JSON.parse(JSON.stringify(o));
 
@@ -480,6 +481,7 @@ try{S=JSON.parse(localStorage.getItem(LS))}catch(e){}
 if(!S||!Array.isArray(S.empresas))S={empresas:sample()};
 if(!Array.isArray(S.fases))S.fases=clone(DEF_FASES);
 if(!Array.isArray(S.campos))S.campos=clone(DEF_CAMPOS);
+if(!S.campos.some(c=>c.key==='web')){const i=S.campos.findIndex(c=>c.key==='email');S.campos.splice(i<0?S.campos.length:i+1,0,{key:'web',label:'Web de contacto',tipo:'url',grupo:'contacto',lista:false,builtin:true,visible:true})}
 if(S.ejemplo){const names=sample().map(e=>e.nombre);S.empresas.forEach(e=>{if(names.includes(e.nombre))e.ejemplo=true});delete S.ejemplo}
 /* ---------- Deshacer / rehacer ---------- */
 let past=[],future=[],lastSnap=JSON.stringify(S),lastQuiet=0;
@@ -878,6 +880,7 @@ function cellHTML(c,e){
   if(c.tipo==='number')return `<td class="num">${v===''||v==null?'—':esc(v)}</td>`;
   if(c.tipo==='tel')return `<td class="num">${esc(v)||'—'}</td>`;
   if(c.tipo==='textarea'){const s=String(v||'');return `<td class="long">${esc(s.length>90?s.slice(0,90)+'…':s)||'—'}</td>`}
+  if(c.tipo==='url'){const u=webHref(v);return u?`<td><a href="${esc(u)}" target="_blank" rel="noopener noreferrer" style="color:var(--accent)" onclick="event.stopPropagation()">${esc(String(v).replace(/^https?:\/\//,'').replace(/\/$/,''))}</a></td>`:'<td>—</td>'}
   return `<td>${esc(v)||'—'}</td>`;
 }
 const DEF_ETQ={nombre:'Empresa',estado:'Fase',accion:'Próxima acción',accionFecha:'Fecha'};
@@ -976,12 +979,16 @@ function setEstado(e,to,keep){
 /* ---------- Ficha lateral ---------- */
 const ICON_TEL='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>';
 const ICON_MAIL='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>';
-const actHref=(t,v)=>t==='tel'?'tel:'+String(v||'').replace(/[^\d+]/g,''):'mailto:'+String(v||'').trim();
-// Agenda: iconos de llamar o escribir cuando la próxima acción lo pide y hay dato
+const ICON_WEB='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>';
+const ACT={tel:{t:'Llamar',i:ICON_TEL},email:{t:'Escribir un email',i:ICON_MAIL},url:{t:'Abrir la web',i:ICON_WEB}};
+const webHref=v=>{v=String(v||'').trim();return !v?'':/^https?:\/\//i.test(v)?v:'https://'+v};
+const actHref=(t,v)=>t==='tel'?'tel:'+String(v||'').replace(/[^\d+]/g,''):t==='url'?webHref(v):'mailto:'+String(v||'').trim();
+// Agenda: iconos de contacto (teléfono, email y web) cuando la empresa tiene el dato
 function agendaActs(e){
-  const a=String(e.accion||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');let h='';
-  if(e.telefono&&visible('telefono')&&/(llam|telefon|tlf|movil|whatsapp)/.test(a))h+=`<a class="act-ic" href="${esc(actHref('tel',e.telefono))}" aria-label="Llamar a ${esc(e.nombre)}" data-tip="Llamar · ${esc(e.telefono)}">${ICON_TEL}</a>`;
-  if(e.email&&visible('email')&&/(e-?mail|correo|\bmail|envi|escrib|mand)/.test(a))h+=`<a class="act-ic" href="${esc(actHref('email',e.email))}" aria-label="Escribir a ${esc(e.nombre)}" data-tip="Escribir · ${esc(e.email)}">${ICON_MAIL}</a>`;
+  let h='';
+  if(e.telefono&&visible('telefono'))h+=`<a class="act-ic" href="${esc(actHref('tel',e.telefono))}" aria-label="Llamar a ${esc(e.nombre)}" data-tip="Llamar · ${esc(e.telefono)}">${ICON_TEL}</a>`;
+  if(e.email&&visible('email'))h+=`<a class="act-ic" href="${esc(actHref('email',e.email))}" aria-label="Escribir a ${esc(e.nombre)}" data-tip="Escribir · ${esc(e.email)}">${ICON_MAIL}</a>`;
+  if(e.web&&visible('web'))h+=`<a class="act-ic" href="${esc(webHref(e.web))}" target="_blank" rel="noopener noreferrer" aria-label="Abrir la web de contacto de ${esc(e.nombre)}" data-tip="Web de contacto">${ICON_WEB}</a>`;
   return h;
 }
 function fieldHTML(c,e){
@@ -989,9 +996,9 @@ function fieldHTML(c,e){
   if(c.tipo==='ciclos')return `<div class="field full"><span class="lab">${esc(c.label)}</span>
     <div class="ciclos">${(c.opciones||[]).map((o,i)=>`<label><input type="checkbox" id="f-${c.key}-${i}" data-multi="${c.key}" value="${esc(o)}" ${(v||[]).includes(o)?'checked':''}>${esc(o)}</label>`).join('')||'<span class="saved">No hay opciones. Añádelas en Configurar.</span>'}</div></div>`;
   if(c.tipo==='textarea')return `<div class="field full"><label for="${id}">${esc(c.label)}</label><textarea id="${id}" data-k="${c.key}">${esc(v)}</textarea></div>`;
-  const type={number:'number',date:'date',email:'email',tel:'tel'}[c.tipo]||'text';
+  const type={number:'number',date:'date',email:'email',tel:'tel',url:'url'}[c.tipo]||'text';
   const inp=`<input id="${id}" type="${type}" ${type==='number'?'min="0"':''} data-k="${c.key}" value="${esc(v)}">`;
-  if(c.tipo==='tel'||c.tipo==='email')return `<div class="field"><label for="${id}">${esc(c.label)}</label><div class="with-copy">${inp}<a class="copy" data-act="${id}" data-kind="${c.tipo}" href="${esc(actHref(c.tipo,v))}" ${String(v).trim()?'':'hidden'} aria-label="${c.tipo==='tel'?'Llamar':'Escribir un email'}" data-tip="${c.tipo==='tel'?'Llamar':'Escribir un email'}">${c.tipo==='tel'?ICON_TEL:ICON_MAIL}</a><button class="copy" data-copy="${id}">Copiar</button></div></div>`;
+  if(ACT[c.tipo]){const A=ACT[c.tipo];return `<div class="field"><label for="${id}">${esc(c.label)}</label><div class="with-copy">${inp}<a class="copy" data-act="${id}" data-kind="${c.tipo}" href="${esc(actHref(c.tipo,v))}" ${c.tipo==='url'?'target="_blank" rel="noopener noreferrer"':''} ${String(v).trim()?'':'hidden'} aria-label="${A.t}" data-tip="${A.t}">${A.i}</a><button class="copy" data-copy="${id}">Copiar</button></div></div>`}
   return `<div class="field"><label for="${id}">${esc(c.label)}</label>${inp}</div>`;
 }
 function openDrawer(id,focus){
@@ -1236,6 +1243,7 @@ const SYN={
   cargo:['cargo','puesto'],
   telefono:['telefono','tel','tlf','telf','movil','telefonocontacto','telefonodecontacto'],
   email:['email','correo','mail','correoelectronico','emailcontacto','email contacto'],
+  web:['web','paginaweb','url','sitioweb','webdecontacto','formulariodecontacto','contactoweb','pagina'],
   ultimo:['ultimocontacto','fechaultimocontacto','fechadeultimocontacto'],
   notas:['notas','observaciones','comentarios','nota'],
   estado:['estado','fase','situacion','estadofase'],
@@ -1602,12 +1610,11 @@ function toolEmp(){
     if(c.tipo==='ciclos')props[c.key]={type:'array',items:{type:'string',enum:(c.opciones||[]).length?c.opciones:undefined},description:`${d}: elige de la lista los que encajen`};
     else if(c.tipo==='number')props[c.key]={type:'integer',description:d};
     else if(c.tipo==='date')props[c.key]={type:'string',description:`${d} (formato AAAA-MM-DD)`};
-    else props[c.key]={type:'string',description:d+(c.tipo==='email'?' (email)':c.tipo==='tel'?' (teléfono)':c.tipo==='textarea'?' (texto largo)':'')};
+    else props[c.key]={type:'string',description:d+(c.tipo==='email'?' (email)':c.tipo==='tel'?' (teléfono)':c.tipo==='url'?' (URL completa; mejor la página o el formulario de contacto de la empresa si existe, si no su web principal)':c.tipo==='textarea'?' (texto largo)':'')};
   });
   Object.assign(props,{
     notas:{type:'string',description:'Otros datos útiles que no encajan en los campos anteriores'},
     motivo_encaje:{type:'string',description:'Una frase: por qué encaja para la FFE'},
-    web:{type:'string',description:'Web de la empresa'},
     fuente:{type:'string',description:'URL de donde salen los datos'}
   });
   return {name:'guardar_empresas',description:`Guarda las empresas encontradas o extraídas (máximo ${AI_MAX}). Cada propiedad es un campo de la ficha del centro.`,input_schema:{type:'object',properties:{empresas:{type:'array',maxItems:AI_MAX,items:{type:'object',properties:props,required:['nombre']}}},required:['empresas']}};
@@ -1734,7 +1741,7 @@ function addAI(){
   const s=v=>String(v??'').trim();
   keep.forEach(r=>{
     const web=/^https?:\/\//.test(s(r.web))?s(r.web):'',src=/^https?:\/\//.test(s(r.fuente))?s(r.fuente):'';
-    const notas=[s(r.motivo_encaje),s(r.localidad)&&`Localidad: ${s(r.localidad)}`,web&&`Web: ${web}`,src&&src!==web&&`Fuente: ${src}`].filter(Boolean).join('\n');
+    const notas=[s(r.motivo_encaje),s(r.localidad)&&`Localidad: ${s(r.localidad)}`,web&&!visible('web')&&`Web: ${web}`,src&&src!==web&&`Fuente: ${src}`].filter(Boolean).join('\n');
     const e={id:uid(),nombre:s(r.nombre),plazas:1,estado:f,ultimo:'',accion:closed?'':'Primera llamada',accionFecha:closed?'':TODAY,motivo:'',historial:[{fecha:TODAY,texto:'Añadida con IA'+(src?` · ${src}`:''),sys:true}]};
     aiCampos().forEach(c=>{
       const v=r[c.key];if(v==null||v===''||(Array.isArray(v)&&!v.length))return;
