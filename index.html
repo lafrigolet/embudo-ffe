@@ -155,6 +155,11 @@ a.copy{display:inline-flex;align-items:center;justify-content:center;min-width:3
 .ml-firma summary{cursor:pointer;font-size:12.5px;color:var(--muted);font-weight:500}
 .ml-firma textarea{margin-top:6px;width:100%;border:1px solid var(--line);border-radius:7px;padding:7px 9px;background:var(--surface);resize:vertical}
 .ml-ask{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.rg-grid{display:grid;grid-template-columns:1fr 170px;gap:10px 12px;align-items:start}
+.fb-opts #rg-other{width:auto;padding:6px 10px;border-radius:99px;font-size:13px}
+.rg-when{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.rg-when input{flex:1 1 150px;width:auto}
+@media (max-width:640px){.rg-grid{grid-template-columns:1fr}}
 a.copy svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .qbtn{display:none}
 .phase-nav{display:none}
@@ -656,6 +661,7 @@ function tdStart(c,x,y){
   g.classList.add('ghost');g.removeAttribute('data-flip');g.removeAttribute('tabindex');g.setAttribute('aria-hidden','true');
   g.style.width=r.width+'px';
   document.body.appendChild(g);c.classList.add('dragging');tipHide();
+  const bd=$('#view .board');if(bd)bd.style.scrollSnapType='none';
   TD={c,g,id:c.dataset.id,dx:x-r.left,dy:y-r.top,x,y,col:null,raf:0};
   try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}
   tdMove(x,y);TD.raf=requestAnimationFrame(tdLoop);
@@ -671,7 +677,7 @@ function tdMove(x,y){
 function tdLoop(){
   if(!TD)return;
   let moved=false;const b=$('#view .board');
-  if(b){const r=b.getBoundingClientRect(),E=48;const v=TD.x<r.left+E?-12:TD.x>r.right-E?12:0;if(v){const s=b.scrollLeft;b.scrollLeft+=v;moved=moved||b.scrollLeft!==s}}
+  if(b){const r=b.getBoundingClientRect(),E=Math.min(70,r.width*.18);const v=TD.x<r.left+E?-9:TD.x>r.right-E?9:0;if(v){const s=b.scrollLeft;b.scrollLeft+=v;moved=moved||b.scrollLeft!==s}}
   const E2=70;const vy=TD.y<E2?-12:TD.y>innerHeight-E2?12:0;
   if(vy){const s=scrollY;scrollBy(0,vy);moved=moved||scrollY!==s}
   if(moved)tdMove(TD.x,TD.y);
@@ -680,6 +686,7 @@ function tdLoop(){
 function tdEnd(drop){
   if(!TD)return;cancelAnimationFrame(TD.raf);
   const {c,g,id,col}=TD;TD=null;
+  const bd=$('#view .board');if(bd)bd.style.scrollSnapType='';
   const line=$('#dropline'),nx=line&&col&&col.contains(line)?line.nextElementSibling:null;
   const beforeId=nx&&nx.classList.contains('card')?nx.dataset.id:null;
   if(line)line.remove();$$('.col.over').forEach(k=>k.classList.remove('over'));
@@ -765,7 +772,7 @@ function renderBoard(){
   const a=activas();
   const prev=snapRects(),ob=$('#view .board'),sl=ob?ob.scrollLeft:0;
   const nav=`<div class="phase-nav" id="phnav" aria-label="Ir a una columna">${S.fases.map(f=>`<button data-goto="${f.id}" style="--pc:${pcolor(f.id)}">${esc(f.label)} <span class="n">${list.filter(e=>e.estado===f.id).length}</span></button>`).join('')}<button class="add" id="phadd">+ Columna</button></div>`;
-  $('#view').innerHTML=nav+`<div class="board">${S.fases.map((f,fi)=>{
+  $('#view').innerHTML=`<div class="board">${S.fases.map((f,fi)=>{
     const items=list.filter(e=>e.estado===f.id).sort(byPos);
     const plz=visible('plazas')&&!f.closed?items.reduce((s,e)=>s+(+e.plazas||0),0):0;
     const step=f.closed?'cierre':`${a.indexOf(f)+1}/${a.length}`;
@@ -969,7 +976,7 @@ function renderAgenda(){
     </section>`}).join('')}</div>`;
   $$('[data-open]').forEach(b=>b.onclick=()=>openDrawer(b.dataset.open));
   $$('[data-mail]').forEach(a=>a.onclick=ev=>{ev.preventDefault();openMail(a.dataset.mail)});
-  $$('[data-log]').forEach(b=>b.onclick=()=>{const e=byId(b.dataset.log);openDrawer(e.id,e.accionFecha?'log':'accion')});
+  $$('[data-log]').forEach(b=>b.onclick=()=>{const e=byId(b.dataset.log);if(e.accionFecha)openRegistro(e.id);else openDrawer(e.id,'accion')});
 }
 
 /* ---------- Acciones sobre datos ---------- */
@@ -1905,10 +1912,69 @@ async function draftMail(){
   if(modalKind==='mail')renderMail();
 }
 function regMail(){
-  const e=byId(mail.id);if(!e)return;const as=mail.asunto.trim();
-  (e.historial=e.historial||[]).unshift({fecha:TODAY,texto:`Email enviado${as?`: «${as}»`:''}`});
-  if(visible('ultimo'))e.ultimo=TODAY;
-  save();mail=null;closeModal();renderAll();openDrawer(e.id,isClosed(e.estado)?null:'accion');toast('Anotado en el historial. Revisa la próxima acción.');
+  const e=byId(mail.id);if(!e)return;const as=mail.asunto.trim();mail=null;
+  openRegistro(e.id,{texto:`Email enviado${as?`: «${as}»`:''}`});
+}
+
+/* ---------- Registrar un contacto (formulario corto) ---------- */
+let reg=null;
+function openRegistro(id,pre={}){
+  const e=byId(id);if(!e)return;
+  reg={id,texto:pre.texto||'',fecha:TODAY,estado:e.estado,accion:'',accionFecha:'',motivo:e.motivo||''};
+  modalKind='registro';renderRegistro();showModal();
+  setTimeout(()=>{const t=$('#rg-t');if(t){t.focus();t.setSelectionRange(t.value.length,t.value.length)}},30);
+}
+function syncReg(){
+  const v=id=>{const el=$(id);return el?el.value:null};
+  const t=v('#rg-t'),f=v('#rg-f'),a=v('#rg-a'),d=v('#rg-d'),m=v('#rg-m');
+  if(t!=null)reg.texto=t;if(f!=null)reg.fecha=f;if(a!=null)reg.accion=a;if(d!=null)reg.accionFecha=d;if(m!=null)reg.motivo=m;
+}
+function renderRegistro(err){
+  const e=byId(reg.id);if(!e){closeModal();return}
+  const cl=isClosed(reg.estado),a=activas(),idx=a.indexOf(fase(e.estado));
+  const next=!isClosed(e.estado)&&idx>=0&&idx<a.length-1?a[idx+1]:null;
+  const others=S.fases.filter(f=>f.id!==e.estado&&(!next||f.id!==next.id));
+  const m=$('#modal');
+  m.innerHTML=`<div class="m-head"><h2>Registrar contacto</h2><button class="btn ghost" data-close aria-label="Cerrar">✕</button></div>
+    <div class="m-body">
+      <div class="restore"><span><b style="color:var(--ink)">${esc(e.nombre)}</b>${e.contacto?` · ${esc(e.contacto)}`:''}${e.accion?` · Tenías: ${esc(e.accion)}`:''}</span></div>
+      ${err?`<div class="err" role="alert">${esc(err)}</div>`:''}
+      <div class="rg-grid">
+        <div class="field"><label for="rg-t">¿Qué ha pasado? *</label><textarea id="rg-t" rows="3" placeholder="Ej.: hablé con Marta, le envío el modelo de convenio">${esc(reg.texto)}</textarea></div>
+        <div class="field"><label for="rg-f">Fecha del contacto</label><input id="rg-f" type="date" value="${esc(reg.fecha)}" max="${TODAY}"></div>
+      </div>
+      <div class="field"><span class="lab" id="rg-fl">Fase</span><div class="fb-opts" role="radiogroup" aria-labelledby="rg-fl">
+        <button type="button" role="radio" data-rgf="${e.estado}" aria-checked="${reg.estado===e.estado}">Sigue en ${esc(label(e.estado))}</button>
+        ${next?`<button type="button" role="radio" data-rgf="${next.id}" aria-checked="${reg.estado===next.id}">Avanza a ${esc(next.label)} →</button>`:''}
+        ${others.length?`<select id="rg-other" class="sel" aria-label="Otra fase"><option value="">Otra fase…</option>${others.map(f=>`<option value="${f.id}" ${reg.estado===f.id?'selected':''}>${esc(f.label)}</option>`).join('')}</select>`:''}
+      </div></div>
+      ${cl?`<div class="motivo-box"><div class="field"><label for="rg-m">Motivo (por qué pasa a «${esc(label(reg.estado))}») *</label><textarea id="rg-m" rows="2" placeholder="Ej.: no tienen tutor disponible en horario de mañana">${esc(reg.motivo)}</textarea></div></div>`
+        :`<div class="next-box" style="grid-template-columns:1fr">
+          <div class="field"><label for="rg-a">Próximo paso *</label><input id="rg-a" type="text" value="${esc(reg.accion)}" placeholder="Ej.: llamar para confirmar la visita"></div>
+          <div class="field"><label for="rg-d">Cuándo *</label><div class="rg-when"><input id="rg-d" type="date" value="${esc(reg.accionFecha)}" min="${TODAY}">${[['Mañana',1],['En 3 días',3],['En 1 semana',7],['En 2 semanas',14]].map(([t,n])=>`<button type="button" class="btn sm" data-rgd="${n}">${t}</button>`).join('')}</div></div>
+        </div>`}
+    </div>
+    <div class="m-foot"><button class="link" id="rg-ficha">Abrir la ficha completa</button><button class="btn primary" id="rg-ok">Guardar</button></div>`;
+  m.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);
+  m.querySelectorAll('[data-rgf]').forEach(b=>b.onclick=()=>{syncReg();reg.estado=b.dataset.rgf;renderRegistro()});
+  $('#rg-other')?.addEventListener('change',ev=>{syncReg();reg.estado=ev.target.value||e.estado;renderRegistro()});
+  m.querySelectorAll('[data-rgd]').forEach(b=>b.onclick=()=>{$('#rg-d').value=off(+b.dataset.rgd);syncReg()});
+  $('#rg-ficha').onclick=()=>{const id=reg.id;reg=null;closeModal();openDrawer(id,'log')};
+  $('#rg-ok').onclick=saveRegistro;
+}
+function saveRegistro(){
+  syncReg();const e=byId(reg.id);if(!e)return;
+  const cl=isClosed(reg.estado);
+  if(!reg.texto.trim()){renderRegistro('Escribe qué ha pasado.');$('#rg-t')?.focus();return}
+  if(cl&&!reg.motivo.trim()){renderRegistro('Anota el motivo.');$('#rg-m')?.focus();return}
+  if(!cl&&(!reg.accion.trim()||!reg.accionFecha)){renderRegistro('Indica el próximo paso y cuándo, para que aparezca en tu agenda.');$(reg.accion.trim()?'#rg-d':'#rg-a')?.focus();return}
+  const f=reg.fecha||TODAY;
+  (e.historial=e.historial||[]).unshift({fecha:f,texto:reg.texto.trim()});
+  if(visible('ultimo')&&(!e.ultimo||f>e.ultimo))e.ultimo=f;
+  if(reg.estado!==e.estado){const from=e.estado;e.estado=reg.estado;delete e.pos;e.historial.unshift({fecha:TODAY,texto:`${label(from)} → ${label(reg.estado)}`,sys:true})}
+  if(cl){e.motivo=reg.motivo.trim();e.accion='';e.accionFecha=''}else{e.accion=reg.accion.trim();e.accionFecha=reg.accionFecha}
+  save();const n=e.nombre;reg=null;closeModal();renderAll();if(openId===e.id)openDrawer(e.id);
+  toast(`Contacto registrado · ${n}`,5000,UNDO);
 }
 
 /* ---------- Toast ---------- */
