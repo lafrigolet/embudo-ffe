@@ -160,6 +160,142 @@ a.copy{display:inline-flex;align-items:center;justify-content:center;min-width:3
 .rg-when{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .rg-when input{flex:1 1 150px;width:auto}
 @media (max-width:640px){.rg-grid{grid-template-columns:1fr}}
+.title-row{display:flex;align-items:center;gap:6px 10px;flex-wrap:wrap}
+.bname-in{font-family:var(--f-display);font-size:24px;font-weight:700;letter-spacing:-.01em;border:1px solid var(--accent);border-radius:6px;padding:0 6px;width:min(520px,70vw);background:var(--surface);color:var(--ink)}
+.scope{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--muted);background:var(--sunken);border-radius:99px;padding:3px 9px;white-space:nowrap}
+.scope svg,.notice-sm svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.scope.shared{color:var(--accent);background:var(--accent-soft)}
+.share-area{display:inline-flex;align-items:center;gap:8px;margin-left:4px}
+.avatars{display:inline-flex}
+.av{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;letter-spacing:.02em;color:#fff;background:hsl(var(--h) 42% 40%);border:2px solid var(--bg);margin-left:-8px;flex:none}
+.avatars .av:first-child{margin-left:0}
+.member .av{margin-left:0;width:38px;height:38px;font-size:13px;border-color:var(--surface)}
+.inv-row{display:flex;gap:8px;flex-wrap:wrap}
+.inv-row select.sel{width:auto;flex:none}
+.inv-row input{flex:1 1 220px;border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:var(--surface)}
+.notice-sm{display:flex;gap:8px;align-items:flex-start;background:var(--sunken);padding:10px 12px;border-radius:8px;font-size:13px;color:var(--muted);margin-top:8px}
+.notice-sm svg{width:15px;height:15px;margin-top:2px}
+.members{border:1px solid var(--line);border-radius:var(--r)}
+.member{display:flex;align-items:center;gap:12px;padding:10px 12px}
+.member .who{flex:1;display:flex;flex-direction:column;min-width:0}
+.member .who input{border:1px solid transparent;border-radius:6px;padding:3px 6px;margin-left:-6px;font-weight:600;background:transparent;width:100%;max-width:280px}
+.member .who input:hover,.member .who input:focus{border-color:var(--line);background:var(--surface)}
+.member .who .sub{font-size:12px;color:var(--muted)}
+.member .role{font-size:13px;color:var(--muted);white-space:nowrap}
+.member+.member{border-top:1px solid var(--line)}
+.member .nm{font-weight:600;overflow-wrap:anywhere}
+.member .acts{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:3px;align-items:center}
+.member .acts .confirm{gap:6px;font-size:12.5px}
+.member select.sel{width:auto;flex:none}
+.danger-link{color:var(--danger)!important}
+.av.pend{background:var(--sunken);color:var(--muted);border:2px dashed var(--line)}
+.av.more{background:var(--sunken);color:var(--muted)}
+.demo-banner{background:var(--warn-soft);color:var(--ink);padding:8px 12px;border-radius:8px;font-size:13px}
+.demo-banner b{color:var(--warn)}
+@media (max-width:640px){
+  .share-btn span{display:none}
+  .share-btn{padding:8px 10px}
+  header.top .avatars{display:none}
+  header.top .tools .btn.icon,header.top .tools .share-btn{padding:8px 9px}
+  .bname-in{font-size:20px}
+}
+body.no-cfg #addcol-tab,body.no-cfg .col-del[data-coldel],body.no-cfg .ins,body.no-cfg #cfgfields{display:none!important}
+.demo-role{display:inline-flex;align-items:center;gap:6px;margin-left:6px}
+.demo-role select{width:auto!important;padding:3px 6px!important;font-size:12.5px}
+.link-off{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted);margin-bottom:8px}
+.link-off svg,.wl-board svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-top:2px}
+#ln-url{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.link-opts{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin-top:8px;font-size:13px;color:var(--muted)}
+.link-opts label{display:inline-flex;gap:6px;align-items:center}
+.link-opts select.sel{width:auto!important;padding:4px 8px!important}
+.on-pill{font-size:11px;font-weight:600;color:var(--ok);background:var(--ok-soft);padding:1px 7px;border-radius:99px;margin-left:6px;text-transform:none;letter-spacing:0}
+.welcome .wl-from{display:flex;gap:12px;align-items:center}
+.welcome .wl-from p{margin:0;font-size:15px}
+.welcome .wl-from .av{width:44px;height:44px;margin:0;font-size:15px;border-color:var(--surface)}
+.wl-board{display:flex;gap:8px;align-items:center;font-family:var(--f-display);font-size:20px;font-weight:700;background:var(--accent-soft);color:var(--accent);padding:12px 14px;border-radius:var(--r)}
+.wl-board svg{width:20px;height:20px;margin:0}
+body[data-rol="lector"] #addemp-tab,body[data-rol="lector"] .card-del,body[data-rol="lector"] .col-add,body[data-rol="lector"] #importar,body[data-rol="lector"] #ia,
+body[data-rol="lector"] .hist,body[data-rol="lector"] [data-log],body[data-rol="lector"] #vaciar{display:none!important}
+body[data-rol="lector"] .card{cursor:pointer}
+.scope.role{background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:500}
+.scope.role-lector{background:var(--warn-soft);border-color:transparent;color:var(--warn);font-weight:600}
+.ro-name{flex:1;margin:0;font-family:var(--f-display);font-size:22px}
+dl.ro{margin:0;display:grid;gap:8px}
+.ro-row{display:grid;grid-template-columns:150px 1fr;gap:10px;font-size:13.5px}
+.ro-row dt{color:var(--muted)}
+.ro-row dd{margin:0;overflow-wrap:anywhere}
+.ro-row a{color:var(--accent)}
+.ro-p{margin:0;font-size:14px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+@media (max-width:640px){.ro-row{grid-template-columns:1fr;gap:2px}}
+.card .motivo{display:flex;gap:6px;align-items:flex-start}
+.card-owner{margin-left:auto;align-self:flex-end;flex:none;padding-left:4px}
+.av.mini{width:20px;height:20px;font-size:9px;border-width:1.5px;margin:0;flex:none}
+.av.online{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--ok)}
+.member .av.online{box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--ok)}
+.on-txt{color:var(--ok);font-weight:500}
+.card.ajena{cursor:pointer}
+.owner-note{display:flex;gap:8px;align-items:center;background:var(--sunken);border-radius:8px;padding:8px 12px;font-size:13px}
+.owner-line{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.owner-line b{color:var(--ink);font-weight:600}
+.owner-line .btn{margin-left:auto}
+.mine-btn{margin-left:auto;align-self:center;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 12px;font-size:13px;color:var(--muted);margin-bottom:6px;white-space:nowrap}
+.mine-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.mine-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+@media (max-width:640px){.mine-btn span{display:none}.mine-btn{padding:7px 9px}}
+@media (pointer:coarse){.mine-btn{min-height:38px}}
+.bsel{position:relative}
+.bswitch{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:2px 6px;margin-left:-6px;border-radius:8px;color:inherit;text-align:left}
+.bswitch:hover{background:var(--sunken)}
+.bname{font-family:var(--f-display);font-weight:700;font-size:24px;letter-spacing:-.01em;line-height:1.2}
+.bswitch .chev{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;flex:none;transition:transform .15s}
+.bswitch[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.bmenu{position:absolute;top:calc(100% + 6px);left:-6px;z-index:30;width:min(380px,calc(100vw - 24px));background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.14);padding:6px;display:flex;flex-direction:column;gap:4px}
+.bgroup{display:flex;flex-direction:column;padding:4px 0}
+.bgroup+.bgroup,.bacts{border-top:1px solid var(--line)}
+.blab{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;padding:6px 10px 4px}
+.bitem{display:grid;grid-template-columns:18px 1fr;gap:2px 6px;align-items:center;text-align:left;border:0;background:none;border-radius:8px;padding:8px 10px;font-size:14px;color:var(--ink)}
+.bitem:hover{background:var(--sunken)}
+.bitem.on{font-weight:600}
+.bcheck{color:var(--accent);font-size:13px}
+.bsub{grid-column:2;font-size:12px;color:var(--muted);font-weight:400}
+.bempty{font-size:13px;color:var(--muted);padding:6px 10px 8px}
+.bacts{display:flex;flex-direction:column;padding-top:4px}
+.bact{border:0;background:none;text-align:left;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--accent)}
+.bact:hover{background:var(--sunken)}
+.bnew{display:flex;gap:6px;padding:6px}
+.bfilter{position:relative;padding:4px}
+.bfilter svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round}
+.bfilter input{width:100%;padding:8px 10px 8px 32px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.bitem{grid-template-columns:18px 1fr auto!important}
+.bsub{grid-column:2/-1!important}
+.bav{display:inline-flex;justify-self:end}
+.bav .av.mini{margin-left:-6px;border-color:var(--surface)}
+.bav .av.mini:first-child{margin-left:0}
+.bav .av.online{box-shadow:none}
+.bitem:hover .bav .av.mini{border-color:var(--sunken)}
+.bnew input{flex:1;border:1px solid var(--line);border-radius:7px;padding:6px 8px;background:var(--surface)}
+.bdel{padding:6px 10px;font-size:13px}
+@media (max-width:640px){.bname{font-size:20px}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cf-types{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cf-types button{text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);display:flex;flex-direction:column;gap:3px}
+.cf-types button span{font-size:12.5px;color:var(--muted)}
+.cf-types button[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.cf-types button[hidden]{display:none}
+@media (max-width:640px){.cf-types{grid-template-columns:1fr}}
+th{position:relative}
+.th-del{opacity:0;border:0;background:none;padding:2px;margin-left:4px;border-radius:5px;color:var(--muted);vertical-align:middle;display:inline-flex;transition:opacity .12s}
+.th-del svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+th:hover .th-del,.th-del:focus-visible{opacity:1}
+.th-del:hover{color:var(--danger);background:var(--danger-soft)}
+@media (hover:none){.th-del{opacity:.7}}
+.th-add{width:1%}
+.th-add button{border:1px dashed var(--line);background:var(--surface);border-radius:6px;padding:3px 9px;font:inherit;font-size:12px;color:var(--accent);text-transform:none;letter-spacing:0;white-space:nowrap}
+.th-add button:hover{border-color:var(--accent)}
+.or-sep{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px}
+.or-sep::before,.or-sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.loading-view{display:flex;gap:10px;align-items:center;justify-content:center;padding:60px 16px;color:var(--muted)}
+.err-view{color:var(--danger)}
 a.copy svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .qbtn{display:none}
 .phase-nav{display:none}
@@ -379,7 +515,7 @@ aside.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);backgro
 <div class="wrap">
   <header class="top">
     <div class="brand">
-      <h1>Embudo de empresas FFE</h1>
+      <div class="title-row"><h1 class="sr-only" id="bh1">Embudo de empresas FFE</h1><div class="bsel"><button type="button" class="bswitch" id="bswitch" aria-haspopup="true" aria-expanded="false"><span id="bname" class="bname">Embudo de empresas FFE</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="bmenu" id="bmenu" role="menu" hidden></div></div><span class="scope" id="bscope"></span><span class="scope role" id="brole" hidden></span></div>
       <span class="curso">Formación en empresa · Curso 2026-27</span>
     </div>
     <div class="tools">
@@ -394,6 +530,7 @@ aside.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);backgro
       <button class="btn icon" id="exportar" aria-label="Exportar a Excel o CSV" data-tip="Exportar a Excel o CSV"><svg viewBox="0 0 24 24"><path d="M12 15V3m0 0L8 7m4-4 4 4M4 17v3h16v-3"/></svg></button>
       <button class="btn icon" id="feedback" aria-label="Enviar un comentario" data-tip="Enviar un comentario" hidden><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></button>
       <span class="hist"><button class="btn icon" id="undo" aria-label="Deshacer" disabled><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button><button class="btn icon" id="redo" aria-label="Rehacer" disabled><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button></span>
+      <span class="share-area"><span class="avatars" id="avatars"></span><button class="btn icon share-btn" id="share" aria-label="Compartir"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></button></span>
     </div>
   </header>
 
@@ -406,10 +543,11 @@ aside.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);backgro
 
   <nav class="tabs" id="tabs">
     <a href="#embudo" data-v="embudo">Embudo</a>
-    <button class="tab-cfg" data-cfgv="embudo" data-cfgtab="fases" aria-label="Configurar las columnas del embudo" data-tip="Configurar las columnas del embudo" hidden><svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    <button class="tab-cfg" id="addcol-tab" data-cfgv="embudo" aria-label="Añadir una columna" data-tip="Añadir una columna"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
     <a href="#lista" data-v="lista">Empresas</a>
-    <button class="tab-cfg" data-cfgv="lista" data-cfgtab="campos" aria-label="Configurar los campos de la empresa" data-tip="Configurar los campos de la empresa" hidden><svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    <button class="tab-cfg" id="addemp-tab" data-cfgv="lista" aria-label="Añadir una empresa" data-tip="Añadir una empresa"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
     <a href="#agenda" data-v="agenda">Agenda <span class="count" id="agcount" hidden></span></a>
+    <button class="mine-btn" id="mine" aria-pressed="false" data-tip="Ver solo las tarjetas de las que eres dueño"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg><span>Mis tarjetas</span></button>
   </nav>
 
   <main id="view"></main>
@@ -485,19 +623,92 @@ function sample(){
 }
 
 /* ---------- Estado y guardado ---------- */
-const LS='embudo-ffe-v1';
-let S;
-try{S=JSON.parse(localStorage.getItem(LS))}catch(e){}
-if(!S||!Array.isArray(S.empresas))S={empresas:sample()};
-if(!Array.isArray(S.fases))S.fases=clone(DEF_FASES);
-if(!Array.isArray(S.campos))S.campos=clone(DEF_CAMPOS);
-if(!S.campos.some(c=>c.key==='web')){const i=S.campos.findIndex(c=>c.key==='email');S.campos.splice(i<0?S.campos.length:i+1,0,{key:'web',label:'Web de contacto',tipo:'url',grupo:'contacto',lista:false,builtin:true,visible:true})}
-if(S.ejemplo){const names=sample().map(e=>e.nombre);S.empresas.forEach(e=>{if(names.includes(e.nombre))e.ejemplo=true});delete S.ejemplo}
+
+/* =====================================================================
+   PREFERENCIAS DE ESTE DISPOSITIVO
+   Cosas personales de este navegador que no se suben a ningún servidor:
+   embudo abierto, filtro «Mis tarjetas», firma de los emails, clave de la IA.
+   ===================================================================== */
+const PREFS={
+  get(k,d=null){try{const v=localStorage.getItem('embudo-ffe-'+k);return v==null?d:v}catch(e){return d}},
+  set(k,v){try{if(v==null)localStorage.removeItem('embudo-ffe-'+k);else localStorage.setItem('embudo-ffe-'+k,String(v))}catch(e){}},
+  getJSON(k,d=null){try{return JSON.parse(this.get(k,'null'))??d}catch(e){return d}},
+  setJSON(k,v){this.set(k,v==null?null:JSON.stringify(v))}
+};
+
+/* =====================================================================
+   ALMACENAMIENTO · SERVICIO
+   Toda la lectura y escritura de embudos pasa por STORE. Para guardar en
+   un servidor: crea una clase que extienda DataStore, implementa sus
+   métodos y cambia la línea `const STORE=`. No hace falta tocar nada más.
+
+   Ids de embudo: los míos son ids propios ('principal', 'b…'); los
+   compartidos conmigo empiezan por 'sh:'.
+   Embudo = { nombre?, empresas:[], fases:[], campos:[], etq? }
+   ===================================================================== */
+const esCompartido=id=>String(id||'').startsWith('sh:');
+class DataStore{
+  constructor(){this._fns=new Set()}
+  /** Mis embudos. @returns {Promise<{id:string, nombre:string}[]>} */
+  async listarEmbudos(){throw new Error('No implementado')}
+  /** Crea un embudo vacío con ese nombre. @returns {Promise<string>} su id */
+  async crearEmbudo(nombre){throw new Error('No implementado')}
+  /** Datos de un embudo (mío o compartido conmigo). @returns {Promise<object|null>} null si no existe */
+  async cargar(id){throw new Error('No implementado')}
+  /** Guarda los datos de un embudo. Se llama en cada cambio: agrupa o aplaza si hace falta. */
+  async guardar(id,datos){throw new Error('No implementado')}
+  /** Borra un embudo y sus datos. */
+  async eliminar(id){throw new Error('No implementado')}
+  /** Avisa cuando los datos de un embudo cambian desde fuera (fn recibe el id). Devuelve una función para dejar de escuchar. */
+  suscribir(fn){this._fns.add(fn);return ()=>this._fns.delete(fn)}
+  _emitir(id){this._fns.forEach(f=>{try{f(id)}catch(e){}})}
+}
+
+/* Implementación en este navegador (localStorage). */
+class LocalStore extends DataStore{
+  constructor(){super();this.BASE='embudo-ffe-v1';this.LISTA='embudo-ffe-embudos'}
+  _key(id){return id==='principal'?this.BASE:esCompartido(id)?this.BASE+':sh-'+id.slice(3):this.BASE+':'+id}
+  _lista(){let l=[];try{l=JSON.parse(localStorage.getItem(this.LISTA)||'[]')||[]}catch(e){}if(!l.some(b=>b.id==='principal'))l.unshift({id:'principal',nombre:''});return l}
+  _guardarLista(l){try{localStorage.setItem(this.LISTA,JSON.stringify(l))}catch(e){}}
+  async listarEmbudos(){return this._lista()}
+  async crearEmbudo(nombre){
+    const id='b'+uid(),l=this._lista();l.push({id,nombre});this._guardarLista(l);
+    const d=normalizar({empresas:[]});d.nombre=nombre;await this.guardar(id,d);return id;
+  }
+  async cargar(id){
+    let d=null;try{d=JSON.parse(localStorage.getItem(this._key(id))||'null')}catch(e){}
+    if(!d&&id==='principal')d={empresas:sample()};
+    return d;
+  }
+  async guardar(id,datos){
+    try{localStorage.setItem(this._key(id),JSON.stringify(datos))}catch(e){throw new Error('No hay espacio para guardar')}
+    if(!esCompartido(id)){const l=this._lista(),b=l.find(x=>x.id===id),n=(datos&&datos.nombre)||'';if(b&&b.nombre!==n){b.nombre=n;this._guardarLista(l)}}
+  }
+  async eliminar(id){
+    try{localStorage.removeItem(this._key(id))}catch(e){}
+    if(!esCompartido(id))this._guardarLista(this._lista().filter(b=>b.id!==id));
+  }
+}
+
+// ▼ Cambia esta línea para guardar en otro sitio (por ejemplo, una clase CloudStore).
+const STORE=new LocalStore();
+
+let ACTUAL=PREFS.get('actual','principal');
+function normalizar(d){
+  if(!d||!Array.isArray(d.empresas))d={...(d||{}),empresas:[]};
+  if(!Array.isArray(d.fases))d.fases=clone(DEF_FASES);
+  if(!Array.isArray(d.campos))d.campos=clone(DEF_CAMPOS);
+  if(!d.campos.some(c=>c.key==='web')){const i=d.campos.findIndex(c=>c.key==='email');d.campos.splice(i<0?d.campos.length:i+1,0,{key:'web',label:'Web de contacto',tipo:'url',grupo:'contacto',lista:false,builtin:true,visible:true})}
+  if(d.ejemplo){const names=sample().map(e=>e.nombre);d.empresas.forEach(e=>{if(names.includes(e.nombre))e.ejemplo=true});delete d.ejemplo}
+  return d;
+}
+let S=normalizar({empresas:[]}),LISTO=false;   // los datos reales llegan en iniciar()
+function persistir(){STORE.guardar(ACTUAL,S).catch(()=>toast('No se han podido guardar los cambios'))}
 /* ---------- Deshacer / rehacer ---------- */
 let past=[],future=[],lastSnap=JSON.stringify(S),lastQuiet=0;
 function save(o={}){
   const cur=JSON.stringify(S);
-  try{localStorage.setItem(LS,cur)}catch(e){}
+  persistir();
   if(o.hist===false||cur===lastSnap)return false;
   const now=Date.now();
   if(!(o.quiet&&lastQuiet&&now-lastQuiet<1500)){past.push(lastSnap);if(past.length>100)past.shift()}
@@ -505,7 +716,7 @@ function save(o={}){
 }
 function updUndo(){const u=$('#undo'),r=$('#redo');if(u)u.disabled=!past.length;if(r)r.disabled=!future.length}
 function applySnap(s){
-  S=JSON.parse(s);lastSnap=s;lastQuiet=0;try{localStorage.setItem(LS,s)}catch(e){}
+  S=JSON.parse(s);lastSnap=s;lastQuiet=0;persistir();
   colDel=null;pendingDel=null;renamingCol=null;editingTh=null;
   const c=S.campos.find(x=>x.key==='ciclos');if(fciclo&&!(c&&c.visible&&(c.opciones||[]).includes(fciclo)))fciclo='';
   fillCicloFilter();renderAll();
@@ -514,8 +725,8 @@ function applySnap(s){
   if(openId){if(byId(openId))openDrawer(openId);else{openId=null;$('#drawer').hidden=true;$('#overlay').hidden=true}}
   updUndo();
 }
-function undo(){if(!past.length)return;future.push(lastSnap);applySnap(past.pop());toast('Deshecho',2500,{label:'Rehacer',fn:redo})}
-function redo(){if(!future.length)return;past.push(lastSnap);applySnap(future.pop());toast('Rehecho',2000)}
+function undo(){if(!past.length||!puedeEditar())return;future.push(lastSnap);applySnap(past.pop());toast('Deshecho',2500,{label:'Rehacer',fn:redo})}
+function redo(){if(!future.length||!puedeEditar())return;past.push(lastSnap);applySnap(future.pop());toast('Rehecho',2000)}
 const UNDO={label:'Deshacer',fn:()=>undo()};
 
 /* ---------- Fases ---------- */
@@ -550,6 +761,7 @@ let view='embudo', q='', fciclo='', sortKey='accionFecha', openId=null, sortDir=
 function filtered(){
   const t=q.trim().toLowerCase();
   return S.empresas.filter(e=>{
+    if(soloMias&&e.dueno!==miId())return false;
     if(fciclo&&!(e.ciclos||[]).includes(fciclo))return false;
     if(!t)return true;
     const txt=[e.nombre,e.accion,e.motivo,...S.campos.map(c=>Array.isArray(e[c.key])?e[c.key].join(' '):e[c.key])].join(' ').toLowerCase();
@@ -585,11 +797,12 @@ function cardHTML(e){
   const d=dueInfo(e);
   const chips=visible('ciclos')?(e.ciclos||[]).map(c=>`<span class="chip">${esc(c)}</span>`).join(''):'';
   const plz=visible('plazas')&&+e.plazas?`<span class="plz">${e.plazas} plaza${e.plazas>1?'s':''}</span>`:'';
+  const own=e.dueno?`<span class="card-owner">${avatarMini(e)}</span>`:'';
   const foot=isClosed(e.estado)
-    ?`<div class="motivo">${esc(e.motivo)||'<i>Sin motivo anotado</i>'}</div>`
-    :`<div class="next"><span class="due ${d.cls}">${d.txt}</span><span class="txt">${e.accion?esc(e.accion):'<i>Anota la próxima acción</i>'}</span></div>`;
-  return `<div class="card" draggable="true" tabindex="0" role="button" data-id="${e.id}" data-flip="e:${e.id}" aria-label="Abrir ${esc(e.nombre)}">
-    <div class="top"><span class="name">${esc(e.nombre)||'<i>Sin nombre</i>'}</span><span class="card-act">${plz}<button class="card-del" data-del-emp="${e.id}" aria-label="Eliminar ${esc(e.nombre)}" data-tip="Eliminar empresa">${TRASH}</button></span></div>
+    ?`<div class="motivo"><span class="txt">${esc(e.motivo)||'<i>Sin motivo anotado</i>'}</span>${own}</div>`
+    :`<div class="next"><span class="due ${d.cls}">${d.txt}</span><span class="txt">${e.accion?esc(e.accion):'<i>Anota la próxima acción</i>'}</span>${own}</div>`;
+  return `<div class="card${puedeTocar(e)?'':' ajena'}" draggable="${puedeTocar(e)}" tabindex="0" role="button" data-id="${e.id}" data-flip="e:${e.id}" aria-label="Abrir ${esc(e.nombre)}">
+    <div class="top"><span class="name">${esc(e.nombre)||'<i>Sin nombre</i>'}</span><span class="card-act">${plz}${puedeTocar(e)?`<button class="card-del" data-del-emp="${e.id}" aria-label="Eliminar ${esc(e.nombre)}" data-tip="Eliminar empresa">${TRASH}</button>`:''}</span></div>
     ${visible('sector')&&e.sector?`<div class="sector">${esc(e.sector)}</div>`:''}
     ${chips?`<div class="chips">${chips}</div>`:''}
     ${foot}
@@ -700,6 +913,7 @@ function tdEnd(drop){
   if(isClosed(to))openDrawer(e.id,'motivo');else toast(`${e.nombre} → ${label(to)}`);
 }
 function bindTouch(c){
+  if(!puedeTocar(byId(c.dataset.id)))return;
   let sx=0,sy=0;
   c.addEventListener('touchstart',ev=>{
     if(ev.touches.length!==1||TD)return;
@@ -719,6 +933,7 @@ function bindTouch(c){
   c.addEventListener('contextmenu',ev=>{if(TD||lpT)ev.preventDefault()});
 }
 function deleteEmpresa(id,el){
+  if(!puedeTocar(byId(id)))return;
   const e=byId(id);if(!e)return;
   const go=()=>{
     S.empresas=S.empresas.filter(x=>x.id!==id);const rec=save();
@@ -729,11 +944,13 @@ function deleteEmpresa(id,el){
   else go();
 }
 function moveCard(e,to,beforeId){
+  if(!puedeTocar(e))return false;
+  const tenia=e.dueno;
   const changed=e.estado!==to;
   const items=S.empresas.filter(x=>x.estado===to&&x.id!==e.id).sort(byPos);
   let i=beforeId?items.findIndex(x=>x.id===beforeId):-1;if(i<0)i=items.length;
   items.splice(i,0,e);items.forEach((x,k)=>x.pos=k);
-  if(changed)setEstado(e,to,true);else{save();renderAll()}
+  if(changed){setEstado(e,to,true);if(e.dueno===miId()&&tenia!==miId()&&compartido())toast(`Ahora eres dueño de ${e.nombre}`)}else{save();renderAll()}
   return changed;
 }
 function removeFase(id){
@@ -763,9 +980,10 @@ function removeFaseNow(id){
   toast(`Columna «${f.label}» quitada${emp.length?` con ${emp.length} empresa${emp.length>1?'s':''}`:''}`,6000,UNDO);
 }
 function nuevaEmpresa(estado){
+  if(!puedeEditar())return;
   const closed=isClosed(estado);
   const e={id:uid(),nombre:'',ciclos:fciclo?[fciclo]:[],plazas:1,estado,accion:closed?'':'Primera llamada',accionFecha:closed?'':TODAY,motivo:'',historial:[],pos:Math.min(0,...S.empresas.filter(x=>x.estado===estado&&x.pos!=null).map(x=>x.pos))-1};
-  S.empresas.unshift(e);save({hist:false});openDrawer(e.id,'nombre');
+  tomarDueno(e);S.empresas.unshift(e);save({hist:false});openDrawer(e.id,'nombre');
 }
 function renderBoard(){
   const list=filtered();
@@ -786,14 +1004,13 @@ function renderBoard(){
         <div class="row"><button class="btn sm danger" data-coldelok="${f.id}">Mover y quitar</button><button class="btn sm" data-coldelno>Cancelar</button></div></div>`;
     }
     return `<section class="col" data-col="${f.id}" data-flip="c:${f.id}" style="--pc:${pcolor(f.id)}">
-      ${fi>0?`<button class="ins" data-ins="${fi}" aria-label="Añadir columna antes de ${esc(f.label)}" data-tip="Añadir columna aquí">${PLUS}</button>`:''}${fi===S.fases.length-1?`<button class="ins end" data-ins="${fi+1}" aria-label="Añadir columna al final" data-tip="Añadir columna al final">${PLUS}</button>`:''}
-      <div class="col-h" draggable="${renamingCol===f.id?'false':'true'}" data-colh="${f.id}" data-tip="Arrastra la cabecera para mover la columna">
-        <div class="row">${renamingCol===f.id?`<input class="col-name" data-rename="${f.id}" value="${esc(f.label)}" aria-label="Nombre de la columna">`:`<span class="t" data-tip="Doble clic para cambiar el nombre">${esc(f.label)}</span>`}<span class="rt"><span class="c">${items.length}</span><button class="col-del col-add" data-coladd="${f.id}" aria-label="Nueva empresa en ${esc(f.label)}" data-tip="Nueva empresa en esta columna">${PLUS}</button><button class="col-del" data-coldel="${f.id}" aria-label="Quitar la columna ${esc(f.label)}" data-tip="${last?'Tiene que quedar al menos una columna en curso':count(f.id)?`Quitar la columna y sus ${count(f.id)} empresa${count(f.id)>1?'s':''}`:'Quitar columna'}" ${last?'disabled':''}>${TRASH}</button></span></div>
+      <div class="col-h" draggable="${renamingCol===f.id||!esProp()?'false':'true'}" data-colh="${f.id}" ${esProp()?'data-tip="Arrastra la cabecera para mover la columna"':''}>
+        <div class="row">${renamingCol===f.id?`<input class="col-name" data-rename="${f.id}" value="${esc(f.label)}" aria-label="Nombre de la columna">`:`<span class="t" ${esProp()?'data-tip="Doble clic para editar la columna"':''}>${esc(f.label)}</span>`}<span class="rt"><span class="c">${items.length}</span><button class="col-del col-add" data-coladd="${f.id}" aria-label="Nueva empresa en ${esc(f.label)}" data-tip="Nueva empresa en esta columna">${PLUS}</button><button class="col-del" data-coldel="${f.id}" aria-label="Quitar la columna ${esc(f.label)}" data-tip="${last?'Tiene que quedar al menos una columna en curso':count(f.id)?`Quitar la columna y sus ${count(f.id)} empresa${count(f.id)>1?'s':''}`:'Quitar columna'}" ${last?'disabled':''}>${TRASH}</button></span></div>
         <div class="row"><span class="h">${esc(f.hint)}</span><span class="step">${step}</span></div>
         ${plz?`<span class="h">${plz} plaza${plz>1?'s':''} posibles</span>`:''}
       </div>
       ${conf}
-      <div class="cards">${items.map(cardHTML).join('')||`<div class="empty-col">${f.closed?'Arrastra aquí las que no salen':'Arrastra aquí una empresa'}</div>`}</div>
+      <div class="cards">${items.map(cardHTML).join('')||`<div class="empty-col">${!puedeEditar()?'Sin empresas':f.closed?'Arrastra aquí las que no salen':'Arrastra aquí una empresa'}</div>`}</div>
     </section>`}).join('')}</div>`;
   const nb=$('#view .board');if(nb)nb.scrollLeft=sl;
   if(nb&&scrollToCol){const c=document.querySelector(`.col[data-col="${CSS.escape(scrollToCol)}"]`);if(c)nb.scrollLeft+=c.getBoundingClientRect().left-nb.getBoundingClientRect().left-16;scrollToCol=null}
@@ -818,7 +1035,7 @@ function bindBoard(){
     h.addEventListener('dragend',()=>{dragCol=null;clearCol()});
   });
   // Papelera de cada columna
-  $$('[data-coldel]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();removeFase(b.dataset.coldel)});
+  $$('[data-coldel]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();if(soloProp())removeFase(b.dataset.coldel)});
   $$('[data-del-emp]').forEach(b=>{
     b.onclick=ev=>{ev.stopPropagation();deleteEmpresa(b.dataset.delEmp,b.closest('.card'))};
     b.addEventListener('touchstart',ev=>ev.stopPropagation(),{passive:true});
@@ -826,13 +1043,13 @@ function bindBoard(){
   $$('[data-coladd]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();nuevaEmpresa(b.dataset.coladd)});
   // + entre columnas
   $$('[data-ins]').forEach(b=>b.onclick=ev=>{
-    ev.stopPropagation();
+    ev.stopPropagation();if(!soloProp())return;
     const i=+b.dataset.ins,l=S.fases[i-1],r=S.fases[i];
     const f={id:'f_'+uid(),label:'Columna nueva',hint:'',closed:!!((l?l.closed:true)&&(r?r.closed:true))};
     S.fases.splice(i,0,f);save();renamingCol=f.id;renderAll();
   });
   // Cambiar el nombre en la propia columna
-  $$('#view .col-h .t').forEach(t=>t.ondblclick=()=>{renamingCol=t.closest('.col').dataset.col;renderBoard()});
+  $$('#view .col-h .t').forEach(t=>t.ondblclick=()=>{if(!soloProp())return;openColForm(t.closest('.col').dataset.col)});
   const rn=$('#view [data-rename]');
   if(rn){
     rn.focus();rn.select();let done=false;
@@ -909,17 +1126,19 @@ function renderList(){
     if(c&&c.tipo==='number')return sortDir*((+va||0)-(+vb||0));
     return sortDir*String(va).localeCompare(String(vb),'es',{numeric:true});
   });
-  const th=(k,t,ed)=>`<th ${sortKey===k?`aria-sort="${sortDir>0?'ascending':'descending'}"`:''}>${editingTh===k?`<input class="th-name" data-thedit="${k}" value="${esc(t)}" aria-label="Nombre del campo">`:`<button data-sort="${k}" ${ed?'data-ed="1"':''} data-tip="${ed?'Clic: ordenar · Doble clic: cambiar el nombre':'Clic: ordenar'}">${esc(t)}<span class="arr">${sortKey===k?(sortDir>0?' ↑':' ↓'):''}</span></button>`}</th>`;
+  const th=(k,t,ed0)=>{const ed=ed0&&esProp();return `<th ${sortKey===k?`aria-sort="${sortDir>0?'ascending':'descending'}"`:''}>${editingTh===k?`<input class="th-name" data-thedit="${k}" value="${esc(t)}" aria-label="Nombre del campo">`:`<button data-sort="${k}" ${ed?'data-ed="1"':''} data-tip="${ed?'Clic: ordenar · Doble clic: cambiar el nombre':'Clic: ordenar'}">${esc(t)}<span class="arr">${sortKey===k?(sortDir>0?' ↑':' ↓'):''}</span></button>${campo(k)&&esProp()?`<button class="th-del" data-thdel="${k}" aria-label="Borrar el campo ${esc(t)}" data-tip="Borrar este campo y sus datos">${TRASH}</button>`:''}`}</th>`};
   $('#view').innerHTML=`<div class="table-wrap"><table>
-    <thead><tr>${th('nombre',etq('nombre'),true)}${th('estado',etq('estado'),true)}${cols.map(c=>th(c.key,c.label,true)).join('')}${th('accion',etq('accion'),true)}${th('accionFecha',etq('accionFecha'),true)}</tr></thead>
+    <thead><tr>${th('nombre',etq('nombre'),true)}${th('estado',etq('estado'),true)}${cols.map(c=>th(c.key,c.label,true)).join('')}${th('accion',etq('accion'),true)}${th('accionFecha',etq('accionFecha'),true)}${esProp()?'<th class="th-add"><button id="th-add" data-tip="Añadir un campo a la tabla">＋ Campo</button></th>':''}</tr></thead>
     <tbody>${list.map(e=>{const d=dueInfo(e);return `<tr data-id="${e.id}" tabindex="0">
       <td><strong>${esc(e.nombre)}</strong></td>
       <td><span class="pill" style="--pc:${pcolor(e.estado)}">${esc(label(e.estado))}</span></td>
       ${cols.map(c=>cellHTML(c,e)).join('')}
       <td>${isClosed(e.estado)?`<span style="color:var(--muted)">${esc(e.motivo)}</span>`:(esc(e.accion)||'<i style="color:var(--danger)">Sin próxima acción</i>')}</td>
-      <td>${d?`<span class="due ${d.cls}">${d.txt}</span>`:''}</td>
-    </tr>`}).join('')||`<tr><td colspan="${cols.length+4}" class="nothing">No hay empresas con ese filtro.</td></tr>`}</tbody>
+      <td>${d?`<span class="due ${d.cls}">${d.txt}</span>`:''}</td>${esProp()?'<td class="td-add"></td>':''}
+    </tr>`}).join('')||`<tr><td colspan="${cols.length+(esProp()?5:4)}" class="nothing">No hay empresas con ese filtro.</td></tr>`}</tbody>
   </table></div>`;
+  $$('[data-thdel]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();borrarCampo(b.dataset.thdel)});
+  $('#th-add')?.addEventListener('click',()=>openCampoForm());
   let clickT;
   $$('th button[data-sort]').forEach(b=>{
     b.onclick=()=>{
@@ -971,11 +1190,11 @@ function renderAgenda(){
           <span class="act">${e.accion?esc(e.accion):'<i>¿Cuál es el siguiente paso?</i>'}</span>
           <span class="sub"><button data-open="${e.id}">${esc(e.nombre)}</button> · <span class="pill" style="--pc:${pcolor(e.estado)}">${esc(label(e.estado))}</span>${e.contacto&&visible('contacto')?` · ${esc(e.contacto)}`:''}${e.telefono&&visible('telefono')?` · ${esc(e.telefono)}`:''}</span>
         </div>
-        <div class="item-act">${agendaActs(e)}<button class="btn sm" data-log="${e.id}">${e.accionFecha?'Registrar':'Planificar'}</button></div>
+        <div class="item-act">${compartido()?avatarMini(e):''}${agendaActs(e)}${puedeTocar(e)?`<button class="btn sm" data-log="${e.id}">${e.accionFecha?'Registrar':'Planificar'}</button>`:''}</div>
       </div>`}).join('')||'<div class="nothing">Nada por aquí.</div>'}</div>
     </section>`}).join('')}</div>`;
   $$('[data-open]').forEach(b=>b.onclick=()=>openDrawer(b.dataset.open));
-  $$('[data-mail]').forEach(a=>a.onclick=ev=>{ev.preventDefault();openMail(a.dataset.mail)});
+  $$('[data-mail]').forEach(a=>a.onclick=ev=>{if(!puedeTocar(byId(a.dataset.mail)))return;ev.preventDefault();openMail(a.dataset.mail)});
   $$('[data-log]').forEach(b=>b.onclick=()=>{const e=byId(b.dataset.log);if(e.accionFecha)openRegistro(e.id);else openDrawer(e.id,'accion')});
 }
 
@@ -983,7 +1202,7 @@ function renderAgenda(){
 const byId=id=>S.empresas.find(e=>e.id===id);
 function setEstado(e,to,keep){
   const from=e.estado;if(from===to)return;
-  e.estado=to;if(!keep)delete e.pos;
+  e.estado=to;if(!keep)delete e.pos;tomarDueno(e);
   (e.historial=e.historial||[]).unshift({fecha:TODAY,texto:`${label(from)} → ${label(to)}`,sys:true});
   if(isClosed(to)){e.accion='';e.accionFecha=''}
   save();renderAll();
@@ -1014,7 +1233,33 @@ function fieldHTML(c,e){
   if(ACT[c.tipo]){const A=ACT[c.tipo];return `<div class="field"><label for="${id}">${esc(c.label)}</label><div class="with-copy">${inp}<a class="copy" data-act="${id}" data-kind="${c.tipo}" href="${esc(actHref(c.tipo,v))}" ${c.tipo==='url'?'target="_blank" rel="noopener noreferrer"':''} ${String(v).trim()?'':'hidden'} aria-label="${A.t}" data-tip="${A.t}">${A.i}</a><button class="copy" data-copy="${id}">Copiar</button></div></div>`}
   return `<div class="field"><label for="${id}">${esc(c.label)}</label>${inp}</div>`;
 }
+function openDrawerRO(e){
+  const val=c=>{let v=e[c.key];if(Array.isArray(v))v=v.join(', ');v=String(v??'').trim();if(!v)return '';
+    if(c.tipo==='date')return esc(fmt(v));
+    if(ACT[c.tipo])return `<a href="${esc(actHref(c.tipo,v))}" ${c.tipo==='url'?'target="_blank" rel="noopener noreferrer"':''}>${esc(v)}</a>`;
+    return esc(v).replace(/\n/g,'<br>')};
+  const groups=Object.keys(GRUPOS).map(g=>{
+    const rows=S.campos.filter(c=>c.visible&&(c.grupo||'otros')===g).map(c=>{const v=val(c);return v?`<div class="ro-row"><dt>${esc(c.label)}</dt><dd>${v}</dd></div>`:''}).join('');
+    return rows?`<section class="d-sec"><h3>${GRUPOS[g]}</h3><dl class="ro">${rows}</dl></section>`:'';
+  }).join('');
+  const d=dueInfo(e);
+  $('#drawer').innerHTML=`
+    <div class="d-head"><h2 class="ro-name">${esc(e.nombre)||'<i>Sin nombre</i>'}</h2><button class="btn ghost" id="cerrar" aria-label="Cerrar ficha">✕</button></div>
+    <div class="d-body">
+      ${puedeEditar()&&e.dueno&&!sinDueno(e)?`<div class="owner-note">${avatarMini(e)}<span>Esta tarjeta es de <b>${esc((miembro(e.dueno)||{}).nombre||'otra persona')}</b>. Solo su dueño puede cambiarla.</span></div>`:''}
+      <section class="d-sec"><h3>Fase del embudo</h3><span class="pill" style="--pc:${pcolor(e.estado)}">${esc(label(e.estado))}</span></section>
+      ${isClosed(e.estado)?(e.motivo?`<section class="d-sec motivo-box"><h3>Motivo</h3><p class="ro-p">${esc(e.motivo)}</p></section>`:'')
+        :`<section class="d-sec"><h3>Próxima acción</h3><p class="ro-p">${d?`<span class="due ${d.cls}">${d.txt}</span> `:''}${esc(e.accion)||'<i>Sin próxima acción</i>'}</p></section>`}
+      ${groups}
+      <section class="d-sec"><h3>Historial de contactos</h3>
+        <ul class="log">${(e.historial||[]).map(h=>`<li><span class="d">${fmt(h.fecha)}</span><span class="${h.sys?'sys':''}">${esc(h.texto)}</span></li>`).join('')||'<li><span class="d">—</span><span class="sys">Todavía no hay contactos registrados.</span></li>'}</ul>
+      </section>
+    </div>`;
+  $('#drawer').hidden=false;$('#overlay').hidden=false;
+  $('#cerrar').onclick=()=>closeDrawer(true);
+}
 function openDrawer(id,focus){
+  {const e0=byId(id);if(e0&&!puedeTocar(e0)){openId=id;openDrawerRO(e0);return}}
   openId=id;const e=byId(id);if(!e)return;
   const a=activas(),f=fase(e.estado),closed=isClosed(e.estado),idx=a.indexOf(f);
   const next=!closed&&idx>=0&&idx<a.length-1?a[idx+1]:null;
@@ -1029,6 +1274,7 @@ function openDrawer(id,focus){
       <button class="btn ghost" id="cerrar" aria-label="Cerrar ficha">✕</button>
     </div>
     <div class="d-body">
+      ${compartido()&&e.estado!==primeraActiva()?`<div class="owner-line">${e.dueno&&!sinDueno(e)?`${avatarMini(e)}<span>Dueño: <b>${e.dueno===miId()?'tú':esc((miembro(e.dueno)||{}).nombre||'')}</b></span>`:`<span class="av mini pend">?</span><span>Sin dueño</span><button class="btn sm" id="tomar">Hacerme dueño</button>`}</div>`:''}
       <section class="d-sec">
         <h3>Fase del embudo</h3>
         <div class="stepper" style="grid-template-columns:repeat(${a.length},1fr)">${a.map((p,i)=>`<button title="${esc(p.label)}" aria-label="Pasar a ${esc(p.label)}" data-ph="${p.id}" class="${!closed&&i<=idx?'done':''}" style="--pc:${pcolor(p.id)}"></button>`).join('')}</div>
@@ -1072,6 +1318,7 @@ function openDrawer(id,focus){
 }
 function bindDrawer(e){
   $('#cerrar').onclick=()=>closeDrawer();
+  $('#tomar')?.addEventListener('click',()=>{e.dueno=miId();save();renderAll();openDrawer(e.id);toast(`Ahora eres dueño de ${e.nombre}`)});
   $('#cfgfields').onclick=()=>openConfig('campos');
   $('#f-nombre').oninput=ev=>{e.nombre=ev.target.value;quietSave()};
   $$('#drawer [data-k]').forEach(el=>el.addEventListener('input',()=>{
@@ -1118,12 +1365,12 @@ function closeModal(){$('#modal').hidden=true;$('#moverlay').hidden=true;imp=nul
 
 /* ---------- Configurar: columnas y campos ---------- */
 let cfgTab='fases', pendingDel=null;
-function openConfig(tab){modalKind='config';cfgTab=tab||cfgTab;pendingDel=null;renderConfig();showModal()}
+function openConfig(tab){if(!soloProp())return;modalKind='config';cfgTab=tab||cfgTab;pendingDel=null;renderConfig();showModal()}
 function renderConfig(){
   $('#modal').innerHTML=`<div class="m-head"><h2>Configurar</h2><button class="btn ghost" data-close aria-label="Cerrar">✕</button></div>
     <div class="m-tabs"><button data-tab="fases" aria-pressed="${cfgTab==='fases'}">Columnas del embudo</button><button data-tab="campos" aria-pressed="${cfgTab==='campos'}">Campos de cada empresa</button></div>
     <div class="m-body">${cfgTab==='fases'?fasesCfg():camposCfg()}</div>
-    <div class="m-foot"><span class="saved">Los cambios se aplican al momento</span><button class="btn primary" data-close>Hecho</button></div>`;
+    <div class="m-foot"><span class="saved">${compartido()?'Los cambios se aplican al momento para todas las personas con acceso':'Los cambios se aplican al momento'}</span><button class="btn primary" data-close>Hecho</button></div>`;
   bindConfig();
 }
 const count=id=>S.empresas.filter(e=>e.estado===id).length;
@@ -1269,13 +1516,13 @@ function targets(){
   return [{v:'',t:'— No importar —'},{v:'nombre',t:'Nombre de la empresa'},
     ...S.campos.map(c=>({v:c.key,t:c.label+(c.builtin&&!c.visible?' (quitado, se volverá a mostrar)':'')})),
     {v:'estado',t:'Fase del embudo'},{v:'accion',t:'Próxima acción'},{v:'accionFecha',t:'Fecha de la próxima acción'},{v:'motivo',t:'Motivo (descarte o próximo curso)'},
-    {v:'__new',t:'+ Crear un campo nuevo con este nombre'}];
+    ...(esProp()?[{v:'__new',t:'+ Crear un campo nuevo con este nombre'}]:[])];
 }
 function autoMatch(h){
   const n=norm(h);if(!n)return '';
   for(const [k,list] of Object.entries(SYN))if(list.map(norm).includes(n)&&(k in SYN))return k;
   const c=S.campos.find(c=>norm(c.label)===n);if(c)return c.key;
-  return '__new';
+  return esProp()?'__new':'';
 }
 function openImport(){modalKind='import';imp=null;renderImport();showModal()}
 function renderImport(msg){
@@ -1445,7 +1692,7 @@ function doImport(){
     const e={id:uid(),nombre:'',estado:imp.fase,accion:'',accionFecha:'',motivo:'',historial:[{fecha:TODAY,texto:`Importada desde ${fuente}`,sys:true}],...o};
     if(!fase(e.estado))e.estado=imp.fase;
     if(isClosed(e.estado)){e.accion='';e.accionFecha=''}
-    S.empresas.push(e);added++;
+    tomarDueno(e);S.empresas.push(e);added++;
   });
   save();closeModal();fillCicloFilter();renderAll();
   const parts=[`${added} empresa${added===1?'':'s'} importada${added===1?'':'s'}`];
@@ -1570,11 +1817,10 @@ async function doExport(){
 }
 
 /* ---------- Añadir empresas con IA (clave propia del usuario) ---------- */
-const LSK='embudo-ffe-ia';
 const AI_MODELS=[['claude-sonnet-5-5','Sonnet 5.5 · equilibrado (recomendado)'],['claude-haiku-5-5','Haiku 5.5 · más rápido y barato'],['claude-opus-5-5','Opus 5.5 · más capaz']];
 const AI_MAX=25;
-function aiCfg(){let c={};try{c=JSON.parse(localStorage.getItem(LSK)||'{}')||{}}catch(e){}if(!AI_MODELS.some(m=>m[0]===c.model))c.model=AI_MODELS[0][0];return c}
-function setAICfg(c){try{if(c)localStorage.setItem(LSK,JSON.stringify(c));else localStorage.removeItem(LSK)}catch(e){}}
+function aiCfg(){let c=PREFS.getJSON('ia',{})||{};if(!AI_MODELS.some(m=>m[0]===c.model))c.model=AI_MODELS[0][0];return c}
+function setAICfg(c){PREFS.setJSON('ia',c||null)}
 const modelName=id=>((AI_MODELS.find(m=>m[0]===id)||[])[1]||id).split(' · ')[0];
 let ai={q:'',web:true,max:10,status:'idle',res:[],sel:new Set(),err:'',fase:'',ctrl:null};
 function openAI(){if(!aiCfg().key)return openAIKey();modalKind='ai';renderAI();showModal();setTimeout(()=>$('#ai-q')?.focus(),30)}
@@ -1766,7 +2012,7 @@ function addAI(){
     });
     const extra=[s(r.notas),notas].filter(Boolean).join('\n');
     if(extra){if(visible('notas'))e.notas=extra;else e.historial.push({fecha:TODAY,texto:extra,sys:true})}
-    S.empresas.push(e);
+    tomarDueno(e);S.empresas.push(e);
   });
   save();const n=keep.length;ai.res=[];ai.sel=new Set();ai.status='idle';closeModal();renderAll();
   toast(`${n} empresa${n===1?'':'s'} añadida${n===1?'':'s'} a «${label(f)}»`,6000,UNDO);
@@ -1841,7 +2087,7 @@ const ICON_AI='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3l1.9 5.
 const TONOS={formal:'Formal',cercano:'Cercano',breve:'Breve'};
 // Dentro de claude.ai usa tu cuenta de Claude; fuera, tu clave de la API
 function getSample(){if(!smP)smP=(window.claude&&typeof window.claude.use==='function')?Promise.resolve(window.claude.use('sample')).catch(()=>null):Promise.resolve(null);return smP}
-const firma=()=>{try{return localStorage.getItem('embudo-ffe-firma')||''}catch(e){return ''}};
+const firma=()=>PREFS.get('firma','');
 function openMail(id){
   const e=byId(id);if(!e)return;
   if(!mail||mail.id!==id)mail={id,obj:e.accion||'',tono:'formal',asunto:'',cuerpo:'',status:'idle',err:'',ask:false};
@@ -1870,7 +2116,7 @@ function renderMail(){
   $('#ml-obj').oninput=ev=>mail.obj=ev.target.value;
   $('#ml-as').oninput=ev=>mail.asunto=ev.target.value;
   $('#ml-cu').oninput=ev=>mail.cuerpo=ev.target.value;
-  $('#ml-fi').oninput=ev=>{try{localStorage.setItem('embudo-ffe-firma',ev.target.value)}catch(e){}};
+  $('#ml-fi').oninput=ev=>PREFS.set('firma',ev.target.value);
   m.querySelectorAll('[data-tono]').forEach(b=>b.onclick=()=>{mail.tono=b.dataset.tono;m.querySelectorAll('[data-tono]').forEach(x=>x.setAttribute('aria-checked',String(x===b)))});
   $('#ml-ai').onclick=draftMail;
   $('#ml-copy').onclick=()=>{
@@ -1919,6 +2165,7 @@ function regMail(){
 /* ---------- Registrar un contacto (formulario corto) ---------- */
 let reg=null;
 function openRegistro(id,pre={}){
+  if(!puedeTocar(byId(id)))return openDrawer(id);
   const e=byId(id);if(!e)return;
   reg={id,texto:pre.texto||'',fecha:TODAY,estado:e.estado,accion:'',accionFecha:'',motivo:e.motivo||''};
   modalKind='registro';renderRegistro();showModal();
@@ -1971,10 +2218,547 @@ function saveRegistro(){
   const f=reg.fecha||TODAY;
   (e.historial=e.historial||[]).unshift({fecha:f,texto:reg.texto.trim()});
   if(visible('ultimo')&&(!e.ultimo||f>e.ultimo))e.ultimo=f;
-  if(reg.estado!==e.estado){const from=e.estado;e.estado=reg.estado;delete e.pos;e.historial.unshift({fecha:TODAY,texto:`${label(from)} → ${label(reg.estado)}`,sys:true})}
+  if(reg.estado!==e.estado){const from=e.estado;e.estado=reg.estado;delete e.pos;tomarDueno(e);e.historial.unshift({fecha:TODAY,texto:`${label(from)} → ${label(reg.estado)}`,sys:true})}
   if(cl){e.motivo=reg.motivo.trim();e.accion='';e.accionFecha=''}else{e.accion=reg.accion.trim();e.accionFecha=reg.accionFecha}
   save();const n=e.nombre;reg=null;closeModal();renderAll();if(openId===e.id)openDrawer(e.id);
   toast(`Contacto registrado · ${n}`,5000,UNDO);
+}
+
+/* ---------- Nombre del embudo y compartir (por ahora, solo interfaz) ---------- */
+const ICON_LOCK='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+const ICON_USERS='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>';
+const DEF_NOMBRE='Embudo de empresas FFE';
+
+/* =====================================================================
+   COMPARTIR · SERVICIO
+   Toda la lógica de compartir pasa por el objeto SHARING. La interfaz solo
+   llama a los métodos de SharingService y escucha sus cambios.
+   Para conectarlo a un servidor real: crea una clase que extienda
+   SharingService, implementa sus métodos y cambia la línea `const SHARING=`.
+   No hace falta tocar nada más de la página.
+
+   Persona = {
+     id:      string,
+     nombre:  string,                       // puede ir vacío en invitaciones pendientes
+     email:   string,
+     rol:     'propietario'|'editor'|'lector',
+     estado:  'activo'|'pendiente',
+     tu?:     boolean,                      // true para el usuario actual
+     enLinea?: boolean,                     // conectado ahora mismo
+     ultimaActividad?: string               // fecha ISO de su última acción
+   }
+   Las tarjetas guardan su dueño en empresa.dueno = id de la Persona.
+   ===================================================================== */
+const ROLES={propietario:'Propietario',editor:'Puede editar',lector:'Solo puede ver'};
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+class SharingService{
+  constructor(){this._fns=new Set()}
+  /** Qué permite la implementación. @returns {{demo:boolean, puedeInvitar:boolean, enlace:boolean, motivo?:string}} */
+  capacidades(){throw new Error('No implementado')}
+  /** Usuario actual. @returns {Promise<Persona>} */
+  async yo(){throw new Error('No implementado')}
+  /** Cambia el nombre visible del usuario actual. */
+  async cambiarMiNombre(nombre){throw new Error('No implementado')}
+  /** Personas con acceso, incluidas las invitaciones pendientes. @returns {Promise<Persona[]>} */
+  async miembros(){throw new Error('No implementado')}
+  /** Invita por email. @returns {Promise<{invitados:Persona[], errores:{email:string,motivo:string}[]}>} */
+  async invitar(emails,rol){throw new Error('No implementado')}
+  /** Cambia el rol de un miembro o de una invitación. */
+  async cambiarRol(id,rol){throw new Error('No implementado')}
+  /** Quita a un miembro o cancela una invitación pendiente. */
+  async quitar(id){throw new Error('No implementado')}
+  /** Vuelve a enviar una invitación pendiente. */
+  async reenviar(id){throw new Error('No implementado')}
+  /** El usuario actual deja el embudo (no disponible para el propietario). */
+  async salir(){throw new Error('No implementado')}
+  /** El propietario pasa la propiedad a otro miembro activo; él pasa a editor. */
+  async transferirPropiedad(id){throw new Error('No implementado')}
+  /** Indica con qué embudo se trabaja (id local o 'sh:…' si es compartido conmigo). Los demás métodos se refieren a él. */
+  usarEmbudo(id){this.embudo=id}
+  /** Personas activas de un embudo cualquiera (para mostrar sus avatares en el selector). @returns {Promise<Persona[]>} */
+  async participantes(id){throw new Error('No implementado')}
+  /** Embudos que otras personas han compartido conmigo.
+      @returns {Promise<{id:string, nombre:string, de:{nombre:string,email:string}, rol:'editor'|'lector'}[]>} */
+  async embudosCompartidos(){throw new Error('No implementado')}
+  /** Enlace de invitación del embudo. @returns {Promise<{activo:boolean, url?:string, rol?:'editor'|'lector'}>} */
+  async enlace(){throw new Error('No implementado')}
+  /** Crea o actualiza el enlace de invitación con ese rol. @returns {Promise<{activo:true, url:string, rol:string}>} */
+  async activarEnlace(rol){throw new Error('No implementado')}
+  /** Desactiva el enlace: quien lo tenga ya no podrá unirse. */
+  async desactivarEnlace(){throw new Error('No implementado')}
+  /** Invitación que ha recibido el usuario actual al abrir la página (por email o enlace), si la hay.
+      @returns {Promise<null|{id:string, de:{nombre:string,email:string}, embudo:string, rol:'editor'|'lector'}>} */
+  async invitacionRecibida(){throw new Error('No implementado')}
+  /** Acepta o rechaza la invitación recibida. */
+  async aceptarInvitacion(id){throw new Error('No implementado')}
+  async rechazarInvitacion(id){throw new Error('No implementado')}
+  /** Escucha cambios (de este usuario o de otros). Devuelve una función para dejar de escuchar. */
+  suscribir(fn){this._fns.add(fn);return ()=>this._fns.delete(fn)}
+  /** Las implementaciones llaman a esto cuando algo cambia. */
+  _emitir(){this._fns.forEach(f=>{try{f()}catch(e){}})}
+}
+
+/* Implementación local: el embudo solo está en este navegador, sin invitaciones. */
+class LocalSharing extends SharingService{
+  _leerYo(){let o={};try{o=JSON.parse(localStorage.getItem('embudo-ffe-yo')||'{}')||{}}catch(e){}if(!o.nombre){const f=(firma()||'').split('\n')[0].trim();if(f)o.nombre=f}return o}
+  capacidades(){return {demo:false,puedeInvitar:false,enlace:false,motivo:'Para invitar a otras personas, el embudo tiene que guardarse en la nube. Ahora mismo está solo en este navegador, así que de momento solo lo ves tú.'}}
+  async yo(){const o=this._leerYo();return {id:'yo',nombre:o.nombre||'',email:o.email||'',rol:'propietario',estado:'activo',tu:true,enLinea:true,ultimaActividad:new Date().toISOString()}}
+  async cambiarMiNombre(nombre){const o=this._leerYo();o.nombre=String(nombre||'').trim();try{localStorage.setItem('embudo-ffe-yo',JSON.stringify(o))}catch(e){}this._emitir()}
+  async miembros(){return [await this.yo()]}
+  async invitar(){throw new Error(this.capacidades().motivo)}
+  async cambiarRol(){throw new Error('No disponible')}
+  async quitar(){throw new Error('No disponible')}
+  async reenviar(){throw new Error('No disponible')}
+  async salir(){throw new Error('No disponible')}
+  async transferirPropiedad(){throw new Error('No disponible')}
+  async embudosCompartidos(){return []}
+  async participantes(){return [await this.yo()]}
+  async enlace(){return {activo:false}}
+  async activarEnlace(){throw new Error('No disponible')}
+  async desactivarEnlace(){}
+  async invitacionRecibida(){return null}
+  async aceptarInvitacion(){}
+  async rechazarInvitacion(){}
+}
+
+/* Implementación de demostración: simula invitaciones y miembros en este navegador
+   para probar la interfaz. No envía nada a nadie. */
+class MockSharing extends LocalSharing{
+  constructor(){super();this.BASE='embudo-ffe-share-demo';this.KEY=this.BASE}
+  usarEmbudo(id){super.usarEmbudo(id);this.KEY=id&&id!=='principal'?this.BASE+':'+id:this.BASE}
+  _recibidos(){try{return JSON.parse(localStorage.getItem(this.BASE+'-recibidos')||'[]')||[]}catch(e){return []}}
+  _guardarRecibidos(l){try{localStorage.setItem(this.BASE+'-recibidos',JSON.stringify(l))}catch(e){}}
+  _compartidoActual(){return esCompartido(this.embudo)?this._recibidos().find(r=>'sh:'+r.id===this.embudo):null}
+  async embudosCompartidos(){return this._recibidos()}
+  async participantes(id){
+    const k=id&&id!=='principal'?this.BASE+':'+id:this.BASE;let otros=[];try{otros=JSON.parse(localStorage.getItem(k)||'[]')||[]}catch(e){}
+    const y=await LocalSharing.prototype.yo.call(this),c=esCompartido(id)?this._recibidos().find(r=>'sh:'+r.id===id):null;
+    const own=c?[{id:'own-'+c.id,nombre:c.de.nombre,email:c.de.email,rol:'propietario',estado:'activo',enLinea:true}]:[];
+    return [...own,y,...otros].filter(p=>p.estado==='activo');
+  }
+  _leer(){try{return JSON.parse(localStorage.getItem(this.KEY)||'[]')||[]}catch(e){return []}}
+  _guardar(l){try{localStorage.setItem(this.KEY,JSON.stringify(l))}catch(e){}this._emitir()}
+  _espera(){return new Promise(r=>setTimeout(r,250))}
+  capacidades(){return {demo:true,puedeInvitar:true,enlace:true}}
+  async miembros(){
+    const c=this._compartidoActual(),y=await this.yo();
+    if(c)return [{id:'own-'+c.id,nombre:c.de.nombre,email:c.de.email,rol:'propietario',estado:'activo',enLinea:true,ultimaActividad:new Date().toISOString()},y,...this._leer()];
+    return [y,...this._leer()];
+  }
+  async invitar(emails,rol){
+    await this._espera();
+    const l=this._leer(),mio=(await this.yo()).email,invitados=[],errores=[];
+    for(const raw of emails){
+      const email=String(raw).trim().toLowerCase();if(!email)continue;
+      if(!EMAIL_RE.test(email)){errores.push({email,motivo:'no es un email válido'});continue}
+      if(email===mio||l.some(p=>p.email===email)){errores.push({email,motivo:'ya tiene acceso o está invitado'});continue}
+      const p={id:uid(),nombre:'',email,rol:rol==='lector'?'lector':'editor',estado:'pendiente'};l.push(p);invitados.push(p);
+    }
+    if(invitados.length)this._guardar(l);
+    return {invitados,errores};
+  }
+  async cambiarRol(id,rol){await this._espera();const l=this._leer(),p=l.find(x=>x.id===id);if(!p)throw new Error('No encontrado');p.rol=rol;this._guardar(l)}
+  async quitar(id){await this._espera();this._guardar(this._leer().filter(x=>x.id!==id))}
+  async reenviar(id){await this._espera();if(!this._leer().some(x=>x.id===id))throw new Error('No encontrado')}
+  async yo(){const y=await super.yo();const c=this._compartidoActual();let r=c?c.rol:'propietario';if(!c){try{r=localStorage.getItem(this.KEY+'-rol')||r}catch(e){}}y.rol=r;return y}
+  _url(t){return location.href.split('#')[0]+'#invitacion='+t}
+  async enlace(){let l=null;try{l=JSON.parse(localStorage.getItem(this.KEY+'-link')||'null')}catch(e){}return l&&l.activo?{activo:true,rol:l.rol,url:this._url(l.token)}:{activo:false}}
+  async activarEnlace(rol){
+    await this._espera();let l=null;try{l=JSON.parse(localStorage.getItem(this.KEY+'-link')||'null')}catch(e){}
+    l={activo:true,rol:rol==='lector'?'lector':'editor',token:(l&&l.activo&&l.token)||uid()+uid()};
+    try{localStorage.setItem(this.KEY+'-link',JSON.stringify(l))}catch(e){}this._emitir();return {activo:true,rol:l.rol,url:this._url(l.token)};
+  }
+  async desactivarEnlace(){await this._espera();try{localStorage.removeItem(this.KEY+'-link')}catch(e){}this._emitir()}
+  async invitacionRecibida(){
+    let f=null;try{f=localStorage.getItem(this.BASE+'-recibida')}catch(e){}
+    if(!f&&!/#invitacion=/.test(location.hash))return null;
+    return {id:'demo',de:{nombre:'Marta Iriarte',email:'marta@centro.es'},embudo:'FFE Informática 2026-27',rol:f||'editor'};
+  }
+  async aceptarInvitacion(){
+    const i=await this.invitacionRecibida();await this._espera();try{localStorage.removeItem(this.BASE+'-recibida')}catch(e){}if(!i)return {};
+    const id=uid(),l=this._recibidos();l.push({id,nombre:i.embudo,de:i.de,rol:i.rol});this._guardarRecibidos(l);
+    const d=normalizar({empresas:sample().map(e=>({...e,ejemplo:false}))});d.nombre=i.embudo;await STORE.guardar('sh:'+id,d);
+    return {embudo:'sh:'+id};
+  }
+  async rechazarInvitacion(){try{localStorage.removeItem(this.BASE+'-recibida')}catch(e){}this._emitir()}
+  /** Solo en la demostración: simula que te ha llegado una invitación. */
+  async simularInvitacionRecibida(rol='editor'){try{localStorage.setItem(this.BASE+'-recibida',rol)}catch(e){}}
+  /** Solo en la demostración: ver el embudo con otro rol. */
+  async simularRol(rol){try{localStorage.setItem(this.KEY+'-rol',rol)}catch(e){}this._emitir()}
+  /** Solo en la demostración: simula que la persona acepta la invitación. */
+  async simularAceptar(id){
+    const l=this._leer(),p=l.find(x=>x.id===id);if(!p)return;
+    const n=p.email.split('@')[0].replace(/[._-]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+    p.estado='activo';p.nombre=p.nombre||n;p.enLinea=true;p.ultimaActividad=new Date().toISOString();this._guardar(l);
+  }
+  async salir(){
+    await this._espera();const c=this._compartidoActual();
+    if(c){this._guardarRecibidos(this._recibidos().filter(r=>r.id!==c.id));await STORE.eliminar('sh:'+c.id);try{localStorage.removeItem(this.KEY)}catch(e){}return {embudo:'principal'}}
+    try{localStorage.removeItem(this.KEY);localStorage.removeItem(this.KEY+'-rol')}catch(e){}this._emitir();return {};
+  }
+  async transferirPropiedad(id){
+    await this._espera();const l=this._leer(),p=l.find(x=>x.id===id&&x.estado==='activo');if(!p)throw new Error('Solo se puede pasar a un miembro activo');
+    l.forEach(x=>{if(x.rol==='propietario')x.rol='editor'});p.rol='propietario';
+    try{localStorage.setItem(this.KEY+'-rol','editor')}catch(e){}this._guardar(l);
+  }
+  /** Solo en la demostración: conecta o desconecta a un miembro. */
+  async simularConexion(id){const l=this._leer(),p=l.find(x=>x.id===id);if(!p)return;p.enLinea=!p.enLinea;if(p.enLinea)p.ultimaActividad=new Date().toISOString();this._guardar(l)}
+}
+
+// ▼ Cambia esta línea para usar otra implementación (por ejemplo, una clase CloudSharing).
+//   new LocalSharing() → sin compartir · new MockSharing() → demostración para probar la interfaz
+const SHARING=new MockSharing();
+
+/* =====================================================================
+   COMPARTIR · INTERFAZ (solo usa SHARING)
+   ===================================================================== */
+const iniciales=n=>String(n||'').trim().split(/[\s@._-]+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'TÚ';
+function avatarHTML(p){
+  const label=p&&(p.nombre||p.email)||'Tú';let h=0;for(const ch of label)h=(h*31+ch.charCodeAt(0))%360;
+  const pend=p&&p.estado==='pendiente';
+  const on=p&&p.enLinea&&!pend;
+  return `<span class="av${pend?' pend':''}${on?' online':''}" style="--h:${h}" title="${esc(label)}${pend?' (invitación pendiente)':on?' · conectado ahora':''}">${esc(iniciales(label))}</span>`;
+}
+// Permisos: solo el propietario cambia la configuración (columnas, campos y nombre del embudo)
+const miRol=()=>(shareState.yo&&shareState.yo.rol)||'propietario';
+const esProp=()=>miRol()==='propietario';
+const miId=()=>(shareState.yo&&shareState.yo.id)||'yo';
+const miembro=id=>shareState.miembros.find(m=>m.id===id&&m.estado==='activo')||(id===miId()?(shareState.yo||{id,nombre:'',estado:'activo',tu:true}):null);
+const sinDueno=e=>!e.dueno||!miembro(e.dueno);
+// Solo el dueño de una tarjeta puede tocarla. Las tarjetas sin dueño (o cuyo dueño dejó el embudo) las puede tocar cualquier editor.
+const puedeTocar=e=>!!e&&puedeEditar()&&(sinDueno(e)||e.dueno===miId());
+// Al salir de la primera columna, quien mueve una tarjeta sin dueño se convierte en su dueño hasta el final del embudo.
+function tomarDueno(e){if(e&&e.estado!==primeraActiva()&&sinDueno(e)){e.dueno=miId();return true}return false}
+function avatarMini(e){
+  if(!e.dueno)return '';
+  const m=miembro(e.dueno);
+  if(!m)return `<span class="av mini pend" data-tip="Sin dueño: cualquiera puede quedársela">?</span>`;
+  const lbl=m.tu?'Tú':(m.nombre||m.email);let h=0;for(const ch of (m.nombre||m.email||'Tú'))h=(h*31+ch.charCodeAt(0))%360;
+  return `<span class="av mini" style="--h:${h}" data-tip="${esc(lbl)}">${esc(iniciales(m.nombre||m.email||'Tú'))}</span>`;
+}
+let soloMias=PREFS.get('mias')==='1';
+const puedeEditar=()=>miRol()!=='lector';
+const compartido=()=>shareState.miembros.some(m=>!m.tu);
+function soloProp(){if(esProp())return true;toast('Solo el propietario puede cambiar la configuración del embudo');return false}
+let shareState={cap:{demo:false,puedeInvitar:false},yo:null,miembros:[],enlace:{activo:false}},shareUI={busy:false,msg:'',ok:'',confirm:null,emails:'',rol:'editor'};
+async function refreshShare(){
+  try{shareState.cap=SHARING.capacidades();shareState.yo=await SHARING.yo();shareState.miembros=await SHARING.miembros();shareState.enlace=await SHARING.enlace()}catch(e){}
+  renderAll();if(modalKind==='share')renderShare();
+}
+SHARING.suscribir(()=>refreshShare());
+function renderHeader(){
+  const n=S.nombre||DEF_NOMBRE,h=$('#bname');
+  if(h)h.textContent=n;const h1=$('#bh1');if(h1)h1.textContent=n;
+  document.title=n;
+  const ms=shareState.miembros.length?shareState.miembros:[{nombre:'',estado:'activo',tu:true}];
+  const otros=ms.filter(m=>!m.tu),shared=otros.length>0,sc=$('#bscope');
+  sc.className='scope'+(shared?' shared':'');
+  sc.innerHTML=shared?`${ICON_USERS} Compartido`:`${ICON_LOCK} Personal`;
+  sc.dataset.tip=(shared?`Lo comparten ${ms.length} personas`:'Solo lo ves tú')+(esProp()?'':` · Eres ${ROLES[miRol()].toLowerCase()==='puede editar'?'editor':'lector'}: no puedes cambiar columnas ni campos`);
+  document.body.classList.toggle('no-cfg',!esProp());
+  document.body.dataset.rol=miRol();
+  const mb=$('#mine');if(mb)mb.setAttribute('aria-pressed',String(soloMias));
+  const br=$('#brole'),r=miRol();
+  br.hidden=!(shared||r!=='propietario');
+  br.className='scope role role-'+r;
+  br.textContent=r==='propietario'?'Eres propietario':r==='editor'?'Eres editor':'Solo lectura';
+  br.dataset.tip=r==='propietario'?'Puedes cambiarlo todo, también columnas, campos y quién tiene acceso':r==='editor'?'Puedes añadir, mover y editar empresas':'Puedes consultar el embudo, pero no cambiar nada';
+  const bs=$('#bswitch');if(bs)bs.dataset.tip=esProp()?'Clic: cambiar de embudo · Doble clic: cambiar el nombre':'Cambiar de embudo';
+  const act=ms.filter(m=>m.estado==='activo').sort((a,b)=>(b.enLinea?1:0)-(a.enLinea?1:0)),vis=act.slice(0,4);
+  $('#avatars').innerHTML=vis.map(avatarHTML).join('')+(act.length>4?`<span class="av more">+${act.length-4}</span>`:'');
+  $('#share').dataset.tip=shared?'Gestionar quién tiene acceso':'Compartir este embudo';
+}
+function editName(){
+  if(!soloProp())return;
+  const bs=$('#bswitch');if($('.bsel .bname-in'))return;
+  const n=S.nombre||DEF_NOMBRE;
+  bs.hidden=true;bs.insertAdjacentHTML('afterend',`<input class="bname-in" value="${esc(n)}" aria-label="Nombre del embudo">`);
+  const i=$('.bsel .bname-in');i.focus();i.select();let done=false;
+  const fin=cancel=>{if(done)return;done=true;const v=i.value.trim();i.remove();bs.hidden=false;if(!cancel&&v&&v!==n){S.nombre=v;save()}renderHeader();setTimeout(()=>bs.focus(),0)};
+  i.onkeyup=ev=>ev.stopPropagation();
+  i.onkeydown=ev=>{ev.stopPropagation();if(ev.key==='Enter'){ev.preventDefault();fin()}else if(ev.key==='Escape')fin(true)};
+  i.onblur=()=>fin();
+}
+/* ---------- Selector de embudos ---------- */
+let bmenu={nuevo:false,borrar:false,compartidos:[]};
+function irAEmbudo(id,msg){
+  PREFS.set('actual',id);try{if(msg)sessionStorage.setItem('embudo-ffe-msg',msg)}catch(e){}
+  history.replaceState(null,'',location.pathname+location.search+'#embudo');location.reload();
+}
+async function toggleBMenu(){
+  const m=$('#bmenu');if(!m.hidden){closeBMenu();return}
+  bmenu={nuevo:false,borrar:false,compartidos:[],q:'',part:{},mios:[]};m.hidden=false;$('#bswitch').setAttribute('aria-expanded','true');
+  m.innerHTML=`<div class="bfilter"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" id="bm-q" placeholder="Buscar embudo…" aria-label="Buscar embudo" autocomplete="off"></div><div id="bm-body"></div>`;
+  $('#bm-q').oninput=ev=>{bmenu.q=ev.target.value;renderBMenu()};
+  $('#bm-q').onkeydown=ev=>{if(ev.key==='Enter'){const f=m.querySelector('[data-board]');if(f)f.click()}};
+  renderBMenu();setTimeout(()=>$('#bm-q')?.focus(),20);
+  try{[bmenu.mios,bmenu.compartidos]=await Promise.all([STORE.listarEmbudos(),SHARING.embudosCompartidos()])}catch(e){}
+  renderBMenu();
+  const ids=[...bmenu.mios.map(b=>b.id),...bmenu.compartidos.map(c=>'sh:'+c.id)];
+  await Promise.all(ids.map(async id=>{try{bmenu.part[id]=await SHARING.participantes(id)}catch(e){}}));
+  if(!m.hidden)renderBMenu();
+}
+function closeBMenu(){const m=$('#bmenu');m.hidden=true;$('#bswitch').setAttribute('aria-expanded','false')}
+function bAvatars(id){
+  const ps=(id===ACTUAL&&shareState.miembros.length?shareState.miembros.filter(p=>p.estado==='activo'):bmenu.part[id])||[];
+  if(!ps.length)return '';
+  const v=ps.slice(0,4).map(p=>avatarHTML(p).replace('class="av','class="av mini')).join('');
+  return `<span class="bav">${v}${ps.length>4?`<span class="av mini more">+${ps.length-4}</span>`:''}</span>`;
+}
+function renderBMenu(){
+  const body=$('#bm-body');if(!body)return;
+  const mios=bmenu.mios,cap=shareState.cap||{},q=norm(bmenu.q);
+  const ok=n=>!q||norm(n).includes(q);
+  const item=(id,nombre,sub)=>`<button type="button" class="bitem${id===ACTUAL?' on':''}" role="menuitem" data-board="${esc(id)}"><span class="bcheck">${id===ACTUAL?'✓':''}</span><span class="bname-t">${esc(nombre)}</span>${bAvatars(id)}${sub?`<span class="bsub">${sub}</span>`:''}</button>`;
+  const nombreDe=b=>b.id===ACTUAL?(S.nombre||DEF_NOMBRE):(b.nombre||DEF_NOMBRE);
+  const mis=mios.filter(b=>ok(nombreDe(b))),comp=bmenu.compartidos.filter(c=>ok(c.nombre));
+  body.innerHTML=`<div class="bgroup"><div class="blab">Mis embudos</div>${mis.map(b=>item(b.id,nombreDe(b),'')).join('')||'<div class="bempty">Ninguno coincide.</div>'}</div>
+    <div class="bgroup"><div class="blab">Compartidos conmigo</div>${comp.length?comp.map(c=>item('sh:'+c.id,('sh:'+c.id)===ACTUAL?(S.nombre||c.nombre):c.nombre,`${esc(c.de.nombre||c.de.email)} · ${c.rol==='lector'?'solo ver':'editor'}`)).join(''):q&&bmenu.compartidos.length?'<div class="bempty">Ninguno coincide.</div>':`<div class="bempty">Nadie ha compartido un embudo contigo todavía.${cap.demo?' <button type="button" class="link" id="bm-demo">Simular una invitación</button>':''}</div>`}</div>
+    <div class="bacts">
+      ${bmenu.nuevo?`<div class="bnew"><input type="text" id="bm-name" placeholder="Nombre del nuevo embudo" aria-label="Nombre del nuevo embudo" value="${esc(bmenu.q)}"><button type="button" class="btn sm primary" id="bm-create">Crear</button></div>`:`<button type="button" class="bact" id="bm-new">＋ Nuevo embudo</button>`}
+      ${!esCompartido(ACTUAL)&&mios.length>1?(bmenu.borrar?`<div class="confirm bdel"><span>¿Eliminar «${esc(S.nombre||DEF_NOMBRE)}» y todas sus empresas?</span><button type="button" class="btn sm danger" id="bm-del-ok">Eliminar</button><button type="button" class="btn sm" id="bm-del-no">No</button></div>`:`<button type="button" class="bact danger-link" id="bm-del">Eliminar este embudo</button>`):''}
+    </div>`;
+  body.querySelectorAll('[data-board]').forEach(b=>b.onclick=()=>{const id=b.dataset.board;if(id===ACTUAL){closeBMenu();return}irAEmbudo(id)});
+  $('#bm-new')?.addEventListener('click',()=>{bmenu.nuevo=true;renderBMenu();const i=$('#bm-name');i.focus();i.select()});
+  const crear=async()=>{
+    const n=$('#bm-name').value.trim();if(!n){$('#bm-name').focus();return}
+    try{const id=await STORE.crearEmbudo(n);irAEmbudo(id,`Embudo «${n}» creado`)}catch(e){toast('No se ha podido crear el embudo')}
+  };
+  $('#bm-create')?.addEventListener('click',crear);
+  $('#bm-name')?.addEventListener('keydown',ev=>{ev.stopPropagation();if(ev.key==='Enter')crear();if(ev.key==='Escape'){bmenu.nuevo=false;renderBMenu()}});
+  $('#bm-del')?.addEventListener('click',()=>{bmenu.borrar=true;renderBMenu()});
+  $('#bm-del-no')?.addEventListener('click',()=>{bmenu.borrar=false;renderBMenu()});
+  $('#bm-del-ok')?.addEventListener('click',async()=>{
+    try{await STORE.eliminar(ACTUAL)}catch(e){toast('No se ha podido eliminar');return}
+    const l=mios.filter(b=>b.id!==ACTUAL);irAEmbudo(l[0].id,'Embudo eliminado');
+  });
+  $('#bm-demo')?.addEventListener('click',async()=>{closeBMenu();await SHARING.simularInvitacionRecibida();checkInvitacion()});
+}
+/* ---------- Añadir o editar una columna ---------- */
+let colf=null;
+function openColForm(id){
+  if(!soloProp())return;
+  const f=id?fase(id):null,act=activas();
+  colf={id:f?f.id:null,label:f?f.label:'',hint:f?f.hint:'',closed:f?!!f.closed:false,after:f?null:(act[act.length-1]||S.fases[S.fases.length-1]).id,err:''};
+  modalKind='colform';renderColForm();showModal();setTimeout(()=>{const i=$('#cf-l');i.focus();i.select()},30);
+}
+function renderColForm(){
+  const m=$('#modal'),nuevo=!colf.id,lastAct=colf.id&&!fase(colf.id).closed&&activas().length<=1;
+  m.innerHTML=`<div class="m-head"><h2>${nuevo?'Nueva columna':'Editar columna'}</h2><button class="btn ghost" data-close aria-label="Cerrar">✕</button></div>
+    <div class="m-body">
+      ${colf.err?`<div class="err" role="alert">${esc(colf.err)}</div>`:''}
+      <div class="field"><label for="cf-l">Nombre *</label><input id="cf-l" type="text" value="${esc(colf.label)}" placeholder="Ej.: Entrevista con el alumnado"></div>
+      <div class="field"><label for="cf-h">Descripción corta</label><input id="cf-h" type="text" value="${esc(colf.hint)}" placeholder="Ej.: La empresa entrevista a los candidatos"><span class="saved">Aparece debajo del nombre, en la cabecera de la columna.</span></div>
+      <div class="field"><span class="lab" id="cf-tl">Tipo</span>
+        <div class="cf-types" role="radiogroup" aria-labelledby="cf-tl">
+          <button type="button" role="radio" data-cft="0" aria-checked="${!colf.closed}"><b>En curso</b><span>Una fase por la que avanzan las empresas. Sus tarjetas tienen próxima acción y salen en la Agenda.</span></button>
+          <button type="button" role="radio" data-cft="1" aria-checked="${colf.closed}" ${lastAct?'hidden':''}><b>De cierre</b><span>Para las que salen del embudo, como Descartada. Pide un motivo y no aparece en la Agenda.</span></button>
+        </div></div>
+      ${nuevo?`<div class="field"><label for="cf-a">Posición</label><select id="cf-a"><option value="__inicio" ${colf.after==='__inicio'?'selected':''}>Al principio</option>${S.fases.map(f=>`<option value="${f.id}" ${colf.after===f.id?'selected':''}>Después de «${esc(f.label)}»</option>`).join('')}</select></div>`:''}
+    </div>
+    <div class="m-foot"><span class="saved">${compartido()?'El cambio se aplica para todas las personas con acceso':''}</span><button class="btn primary" id="cf-ok">${nuevo?'Añadir columna':'Guardar'}</button></div>`;
+  m.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);
+  const sync=()=>{colf.label=$('#cf-l').value;colf.hint=$('#cf-h').value;const a=$('#cf-a');if(a)colf.after=a.value};
+  m.querySelectorAll('[data-cft]').forEach(b=>b.onclick=()=>{sync();colf.closed=b.dataset.cft==='1';m.querySelectorAll('[data-cft]').forEach(x=>x.setAttribute('aria-checked',String(x===b)))});
+  ['#cf-l','#cf-h'].forEach(sel=>$(sel).onkeydown=ev=>{if(ev.key==='Enter')saveColForm()});
+  $('#cf-ok').onclick=saveColForm;
+}
+function saveColForm(){
+  const a=$('#cf-a');colf.label=$('#cf-l').value.trim();colf.hint=$('#cf-h').value.trim();if(a)colf.after=a.value;
+  if(!colf.label){colf.err='Ponle un nombre a la columna.';renderColForm();$('#cf-l').focus();return}
+  if(colf.id){
+    const f=fase(colf.id);
+    if(colf.closed&&!f.closed&&activas().length<=1){colf.err='Tiene que quedar al menos una columna en curso.';renderColForm();return}
+    f.label=colf.label;f.hint=colf.hint;
+    if(colf.closed&&!f.closed)S.empresas.forEach(e=>{if(e.estado===f.id){e.accion='';e.accionFecha=''}});
+    f.closed=colf.closed;save();closeModal();renderAll();toast(`Columna «${f.label}» actualizada`,4000,UNDO);
+  }else{
+    const f={id:'f_'+uid(),label:colf.label,hint:colf.hint,closed:colf.closed};
+    const i=colf.after==='__inicio'?0:S.fases.findIndex(x=>x.id===colf.after)+1;
+    S.fases.splice(i<0?S.fases.length:i,0,f);scrollToCol=f.id;save();closeModal();renderAll();toast(`Columna «${f.label}» añadida`,4000,UNDO);
+  }
+}
+/* ---------- Campos desde la tabla de Empresas ---------- */
+function borrarCampo(k){
+  if(!soloProp())return;const c=campo(k);if(!c)return;
+  if(c.builtin){c.visible=false;if(k==='ciclos'){fciclo='';fillCicloFilter()}}
+  else{S.campos=S.campos.filter(x=>x.key!==k);S.empresas.forEach(e=>delete e[k])}
+  if(sortKey===k){sortKey='accionFecha';sortDir=1}
+  save();renderAll();toast(`Campo «${c.label}» borrado`,6000,UNDO);
+}
+let cmf=null;
+function openCampoForm(){
+  if(!soloProp())return;
+  cmf={label:'',tipo:'text',grupo:'otros',opciones:'',err:''};
+  modalKind='campoform';renderCampoForm();showModal();setTimeout(()=>$('#cm-l')?.focus(),30);
+}
+function renderCampoForm(){
+  const m=$('#modal');
+  const ocultos=S.campos.filter(c=>c.visible&&!c.lista),quitados=S.campos.filter(c=>c.builtin&&!c.visible);
+  const tipos={...TIPOS,ciclos:'Opciones (varias a elegir)'};
+  m.innerHTML=`<div class="m-head"><h2>Añadir un campo</h2><button class="btn ghost" data-close aria-label="Cerrar">✕</button></div>
+    <div class="m-body">
+      ${ocultos.length||quitados.length?`<div class="field"><span class="lab">Mostrar en la tabla un campo que ya existe</span>
+        <div class="fb-opts">${ocultos.map(c=>`<button type="button" data-showc="${c.key}">＋ ${esc(c.label)}</button>`).join('')}${quitados.map(c=>`<button type="button" data-restc="${c.key}" data-tip="Lo quitaste antes; sus datos se conservan">＋ ${esc(c.label)}</button>`).join('')}</div></div>
+        <div class="or-sep"><span>o crea uno nuevo</span></div>`:''}
+      ${cmf.err?`<div class="err" role="alert">${esc(cmf.err)}</div>`:''}
+      <div class="field"><label for="cm-l">Nombre del campo *</label><input id="cm-l" type="text" value="${esc(cmf.label)}" placeholder="Ej.: Horario de prácticas"></div>
+      <div class="grid2">
+        <div class="field"><label for="cm-t">Tipo de dato</label><select id="cm-t">${Object.entries(tipos).map(([k,t])=>`<option value="${k}" ${cmf.tipo===k?'selected':''}>${t}</option>`).join('')}</select></div>
+        <div class="field"><label for="cm-g">Sección de la ficha</label><select id="cm-g">${Object.entries(GRUPOS).map(([k,t])=>`<option value="${k}" ${cmf.grupo===k?'selected':''}>${t}</option>`).join('')}</select></div>
+      </div>
+      <div class="field" id="cm-ob" ${cmf.tipo==='ciclos'?'':'hidden'}><label for="cm-o">Opciones (separadas por comas)</label><input id="cm-o" type="text" value="${esc(cmf.opciones)}" placeholder="Ej.: Mañana, Tarde, Partido"></div>
+      <p class="m-hint">El campo aparecerá como columna en esta tabla y en la ficha de cada empresa. ${compartido()?'Lo verán todas las personas con acceso.':''}</p>
+    </div>
+    <div class="m-foot"><span></span><button class="btn primary" id="cm-ok">Añadir campo</button></div>`;
+  m.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);
+  const sync=()=>{cmf.label=$('#cm-l').value;cmf.tipo=$('#cm-t').value;cmf.grupo=$('#cm-g').value;const o=$('#cm-o');if(o)cmf.opciones=o.value};
+  $('#cm-t').onchange=()=>{sync();$('#cm-ob').hidden=cmf.tipo!=='ciclos'};
+  m.querySelectorAll('[data-showc]').forEach(b=>b.onclick=()=>{const c=campo(b.dataset.showc);c.lista=true;save();closeModal();renderAll();toast(`«${c.label}» añadido a la tabla`,4000,UNDO)});
+  m.querySelectorAll('[data-restc]').forEach(b=>b.onclick=()=>{const c=campo(b.dataset.restc);c.visible=true;c.lista=true;fillCicloFilter();save();closeModal();renderAll();toast(`«${c.label}» recuperado`,4000,UNDO)});
+  $('#cm-l').onkeydown=ev=>{if(ev.key==='Enter')saveCampoForm()};
+  $('#cm-ok').onclick=saveCampoForm;
+}
+function saveCampoForm(){
+  const o=$('#cm-o');cmf.label=$('#cm-l').value.trim();cmf.tipo=$('#cm-t').value;cmf.grupo=$('#cm-g').value;if(o)cmf.opciones=o.value;
+  if(!cmf.label){cmf.err='Ponle un nombre al campo.';renderCampoForm();$('#cm-l').focus();return}
+  if(S.campos.some(c=>norm(c.label)===norm(cmf.label)&&c.visible)){cmf.err='Ya hay un campo con ese nombre.';renderCampoForm();return}
+  const c={key:'x_'+uid(),label:cmf.label,tipo:cmf.tipo,grupo:cmf.grupo,builtin:false,visible:true,lista:true};
+  if(c.tipo==='ciclos')c.opciones=cmf.opciones.split(',').map(x=>x.trim()).filter(Boolean);
+  S.campos.push(c);save();closeModal();renderAll();toast(`Campo «${c.label}» añadido`,4000,UNDO);
+  setTimeout(()=>{const w=$('#view .table-wrap');if(w)w.scrollLeft=w.scrollWidth},50);
+}
+function openShare(){modalKind='share';shareUI={busy:false,msg:'',ok:'',confirm:null,emails:'',rol:'editor'};renderShare();showModal();refreshShare()}
+function memberRow(p,soyProp){
+  const pend=p.estado==='pendiente',cap=shareState.cap;
+  const nombre=p.tu?`<input id="sh-yo" type="text" value="${esc(p.nombre||'')}" placeholder="Escribe tu nombre" aria-label="Tu nombre">`
+    :`<span class="nm">${esc(p.nombre||p.email)}</span>`;
+  const sub=p.tu?'Tú':pend?`${esc(p.email)} · Invitación pendiente`:`${esc(p.email)} · ${p.enLinea?'<span class="on-txt">Conectado ahora</span>':esc(haceCuanto(p.ultimaActividad))}`;
+  let rol;
+  if(p.rol==='propietario'||!soyProp)rol=`<span class="role">${ROLES[p.rol]||p.rol}</span>`;
+  else rol=`<select class="sel" data-rol="${p.id}" aria-label="Permiso de ${esc(p.nombre||p.email)}" ${shareUI.busy?'disabled':''}>${['editor','lector'].map(r=>`<option value="${r}" ${p.rol===r?'selected':''}>${ROLES[r]}</option>`).join('')}</select>`;
+  let acts='';
+  if(!p.tu&&soyProp){
+    if(shareUI.confirm===p.id)acts=`<span class="confirm"><span>${pend?'¿Cancelar la invitación?':'¿Quitar el acceso?'}</span><button class="btn sm danger" data-quitar-ok="${p.id}">Sí</button><button class="btn sm" data-quitar-no>No</button></span>`;
+    else if(shareUI.confirm==='prop-'+p.id)acts=`<span class="confirm"><span>¿Pasar la propiedad? Tú pasarás a editor.</span><button class="btn sm primary" data-prop-ok="${p.id}">Sí</button><button class="btn sm" data-quitar-no>No</button></span>`;
+    else acts=`${pend?`<button class="link" data-reenviar="${p.id}">Reenviar</button>${cap.demo?`<button class="link" data-aceptar="${p.id}">Simular que acepta</button>`:''}`:`<button class="link" data-prop="${p.id}">Hacer propietario</button>${cap.demo?`<button class="link" data-conn="${p.id}">${p.enLinea?'Simular que se desconecta':'Simular que se conecta'}</button>`:''}`}<button class="link danger-link" data-quitar="${p.id}">${pend?'Cancelar':'Quitar'}</button>`;
+  }
+  return `<div class="member${pend?' pend':''}"><span>${avatarHTML(p)}</span><div class="who">${nombre}<span class="sub">${sub}</span>${acts?`<span class="acts">${acts}</span>`:''}</div>${rol}</div>`;
+}
+function renderShare(){
+  const m=$('#modal'),n=S.nombre||DEF_NOMBRE,cap=shareState.cap,ms=shareState.miembros.length?shareState.miembros:[{id:'yo',nombre:'',rol:'propietario',estado:'activo',tu:true}];
+  const yoP=ms.find(x=>x.tu),soyProp=!yoP||yoP.rol==='propietario',dis=!cap.puedeInvitar||shareUI.busy||!soyProp;
+  m.innerHTML=`<div class="m-head"><h2>Compartir «${esc(n)}»</h2><button class="btn ghost" data-close aria-label="Cerrar">✕</button></div>
+    <div class="m-body">
+      ${cap.demo?`<div class="demo-banner"><b>Modo demostración.</b> Las invitaciones no se envían a nadie: sirven para probar cómo funcionará compartir.
+        <button class="link" id="sh-demo-inv">Ver la pantalla de invitación</button>
+        <button class="link" id="sh-demo-reparto">Repartir tarjetas entre los miembros</button>
+        <label class="demo-role">Ver como <select class="sel" id="sh-demo-rol">${Object.entries(ROLES).map(([k,t])=>`<option value="${k}" ${(yoP&&yoP.rol)===k?'selected':''}>${k==='propietario'?t:k==='editor'?'Editor':'Lector'}</option>`).join('')}</select></label></div>`:''}
+      ${soyProp?`<div class="field"><label for="sh-mail">Invitar a otras personas</label>
+        <div class="inv-row"><input type="text" id="sh-mail" inputmode="email" placeholder="email@centro.es, otro@centro.es" value="${esc(shareUI.emails)}" ${dis?'disabled':''}>
+          <select class="sel" id="sh-rol" aria-label="Permiso" ${dis?'disabled':''}>${['editor','lector'].map(r=>`<option value="${r}" ${shareUI.rol===r?'selected':''}>${ROLES[r]}</option>`).join('')}</select>
+          <button class="btn primary" id="sh-inv" ${dis?'disabled':''}>${shareUI.busy?'Invitando…':'Invitar'}</button></div>
+        <p class="m-hint" style="margin-top:6px">«Puede editar»: añade, mueve y edita empresas. «Solo puede ver»: consulta el embudo sin cambiar nada.</p>
+        ${cap.puedeInvitar?'':`<div class="notice-sm">${ICON_LOCK}<span>${esc(cap.motivo||'Ahora mismo no se puede invitar.')}</span></div>`}
+      </div>`:''}
+      ${soyProp&&cap.enlace?linkSection():''}
+      ${shareUI.msg?`<div class="err" role="alert">${esc(shareUI.msg)}</div>`:''}
+      ${shareUI.ok?`<div class="ok-box" role="status">${esc(shareUI.ok)}</div>`:''}
+      <div class="field"><span class="lab">Personas con acceso (${ms.length})</span>
+        <div class="members">${ms.map(p=>memberRow(p,soyProp)).join('')}</div>
+      </div>
+    </div>
+    <div class="m-foot">${!soyProp&&compartido()?(shareUI.confirm==='salir'?`<span class="confirm"><span>¿Salir del embudo? Tus tarjetas quedarán sin dueño.</span><button class="btn sm danger" id="sh-salir-ok">Salir</button><button class="btn sm" data-quitar-no>No</button></span>`:'<button class="link danger-link" id="sh-salir">Salir del embudo</button>'):'<span class="saved">Tu nombre se usa para tus iniciales y para firmar lo que hagas en un embudo compartido.</span>'}<button class="btn primary" data-close>Hecho</button></div>`;
+  m.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);
+  $('#sh-demo-rol')?.addEventListener('change',ev=>SHARING.simularRol&&SHARING.simularRol(ev.target.value));
+  $('#sh-demo-inv')?.addEventListener('click',async()=>{await SHARING.simularInvitacionRecibida();checkInvitacion()});
+  bindLinkSection(m);
+  const yoIn=$('#sh-yo');
+  if(yoIn){let t;yoIn.oninput=ev=>{const v=ev.target.value;clearTimeout(t);t=setTimeout(()=>SHARING.cambiarMiNombre(v),300)}}
+  const mail=$('#sh-mail');
+  if(mail){mail.oninput=ev=>shareUI.emails=ev.target.value;mail.onkeydown=ev=>{if(ev.key==='Enter')doInvite()}}
+  $('#sh-rol')?.addEventListener('change',ev=>shareUI.rol=ev.target.value);
+  $('#sh-inv')?.addEventListener('click',doInvite);
+  const op=async(fn,ok)=>{shareUI.busy=true;shareUI.msg='';shareUI.ok='';renderShare();try{await fn();shareUI.ok=ok||''}catch(e){shareUI.msg=e&&e.message||'No se ha podido completar.'}shareUI.busy=false;shareUI.confirm=null;await refreshShare()};
+  m.querySelectorAll('[data-rol]').forEach(sel=>sel.onchange=()=>op(()=>SHARING.cambiarRol(sel.dataset.rol,sel.value),'Permiso actualizado.'));
+  m.querySelectorAll('[data-quitar]').forEach(b=>b.onclick=()=>{shareUI.confirm=b.dataset.quitar;renderShare()});
+  m.querySelector('[data-quitar-no]')?.addEventListener('click',()=>{shareUI.confirm=null;renderShare()});
+  m.querySelectorAll('[data-quitar-ok]').forEach(b=>b.onclick=()=>op(()=>SHARING.quitar(b.dataset.quitarOk),'Hecho.'));
+  m.querySelectorAll('[data-reenviar]').forEach(b=>b.onclick=()=>op(()=>SHARING.reenviar(b.dataset.reenviar),'Invitación reenviada.'));
+  m.querySelectorAll('[data-aceptar]').forEach(b=>b.onclick=()=>op(()=>SHARING.simularAceptar(b.dataset.aceptar),'Ha aceptado la invitación (simulado).'));
+  m.querySelectorAll('[data-conn]').forEach(b=>b.onclick=()=>op(()=>SHARING.simularConexion(b.dataset.conn),''));
+  m.querySelectorAll('[data-prop]').forEach(b=>b.onclick=()=>{shareUI.confirm='prop-'+b.dataset.prop;renderShare()});
+  m.querySelectorAll('[data-prop-ok]').forEach(b=>b.onclick=()=>op(()=>SHARING.transferirPropiedad(b.dataset.propOk),'Propiedad transferida. Ahora eres editor.'));
+  $('#sh-salir')?.addEventListener('click',()=>{shareUI.confirm='salir';renderShare()});
+  $('#sh-salir-ok')?.addEventListener('click',async()=>{let r;try{r=await SHARING.salir()}catch(e){shareUI.msg=e.message;renderShare();return}closeModal();if(r&&r.embudo){irAEmbudo(r.embudo,'Has salido del embudo');return}await refreshShare();toast('Has salido del embudo')});
+  $('#sh-demo-reparto')?.addEventListener('click',demoReparto);
+}
+const ICON_LINK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>';
+function linkSection(){
+  const l=shareState.enlace||{},dis=shareUI.busy?'disabled':'';
+  if(!l.activo)return `<div class="field link-box"><span class="lab">Enlace de invitación</span>
+    <div class="link-off">${ICON_LINK}<span>Crea un enlace para compartirlo por WhatsApp, correo o en el claustro. Quien lo abra podrá unirse.</span></div>
+    <div class="inv-row"><select class="sel" id="ln-rol" aria-label="Permiso del enlace" ${dis}>${['editor','lector'].map(r=>`<option value="${r}">${ROLES[r]}</option>`).join('')}</select><button class="btn" id="ln-on" ${dis}>Crear enlace</button></div></div>`;
+  return `<div class="field link-box"><span class="lab">Enlace de invitación <span class="on-pill">Activo</span></span>
+    <div class="inv-row"><input type="text" id="ln-url" value="${esc(l.url)}" readonly aria-label="Enlace de invitación"><button class="btn" id="ln-copy">Copiar</button>${navigator.share?'<button class="btn" id="ln-share">Compartir…</button>':''}</div>
+    <div class="link-opts"><label>Quien entre con el enlace <select class="sel" id="ln-rol" aria-label="Permiso del enlace" ${dis}>${['editor','lector'].map(r=>`<option value="${r}" ${l.rol===r?'selected':''}>${ROLES[r].toLowerCase()}</option>`).join('')}</select></label>
+      <button class="link danger-link" id="ln-off" ${dis}>Desactivar enlace</button></div></div>`;
+}
+function bindLinkSection(m){
+  const op=async(fn,ok)=>{shareUI.busy=true;shareUI.msg='';shareUI.ok='';renderShare();try{await fn();shareUI.ok=ok||''}catch(e){shareUI.msg=e&&e.message||'No se ha podido completar.'}shareUI.busy=false;await refreshShare()};
+  $('#ln-on')?.addEventListener('click',()=>op(()=>SHARING.activarEnlace($('#ln-rol').value),'Enlace creado. Cópialo y compártelo.'));
+  if(shareState.enlace&&shareState.enlace.activo)$('#ln-rol')?.addEventListener('change',ev=>op(()=>SHARING.activarEnlace(ev.target.value),'Permiso del enlace actualizado.'));
+  $('#ln-off')?.addEventListener('click',()=>op(()=>SHARING.desactivarEnlace(),'Enlace desactivado: ya no sirve para unirse.'));
+  $('#ln-url')?.addEventListener('focus',ev=>ev.target.select());
+  $('#ln-copy')?.addEventListener('click',()=>{const b=$('#ln-copy'),u=shareState.enlace.url;try{navigator.clipboard.writeText(u).then(()=>{b.textContent='Copiado';setTimeout(()=>{if(b.isConnected)b.textContent='Copiar'},1400)},()=>$('#ln-url').select())}catch(e){$('#ln-url').select()}});
+  $('#ln-share')?.addEventListener('click',()=>{navigator.share({title:S.nombre||DEF_NOMBRE,text:`Te invito a «${S.nombre||DEF_NOMBRE}»`,url:shareState.enlace.url}).catch(()=>{})});
+}
+/* Pantalla de bienvenida para quien recibe una invitación */
+let inv=null;
+async function checkInvitacion(){
+  try{inv=await SHARING.invitacionRecibida()}catch(e){inv=null}
+  if(inv){modalKind='welcome';renderWelcome();showModal()}
+}
+function renderWelcome(err){
+  const m=$('#modal'),y=shareState.yo||{};
+  m.innerHTML=`<div class="m-head"><h2>Te han invitado</h2><button class="btn ghost" data-close aria-label="Cerrar">✕</button></div>
+    <div class="m-body welcome">
+      <div class="wl-from">${avatarHTML({nombre:inv.de.nombre})}<p><b>${esc(inv.de.nombre||inv.de.email)}</b> te invita a colaborar en el embudo</p></div>
+      <div class="wl-board">${ICON_USERS}<span>${esc(inv.embudo)}</span></div>
+      <p class="m-hint">Entrarás con permiso <b>${esc(ROLES[inv.rol].toLowerCase())}</b>: ${inv.rol==='lector'?'podrás consultar el embudo, pero no cambiar nada.':'podrás añadir, mover y editar empresas.'}</p>
+      <div class="field"><label for="wl-nombre">Tu nombre (así te verán los demás)</label><input id="wl-nombre" type="text" value="${esc(y.nombre||'')}" placeholder="Nombre y apellidos"></div>
+      ${err?`<div class="err">${esc(err)}</div>`:''}
+    </div>
+    <div class="m-foot"><button class="btn" id="wl-no">Ahora no</button><button class="btn primary" id="wl-ok">Unirme</button></div>`;
+  m.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);
+  const fin=()=>{if(/#invitacion=/.test(location.hash))history.replaceState(null,'',location.pathname+location.search+'#embudo')};
+  $('#wl-no').onclick=async()=>{await SHARING.rechazarInvitacion(inv.id);fin();closeModal();toast('Invitación descartada')};
+  $('#wl-ok').onclick=async()=>{
+    const n=$('#wl-nombre').value.trim();if(!n){renderWelcome('Escribe tu nombre para que los demás sepan quién eres.');$('#wl-nombre').focus();return}
+    $('#wl-ok').disabled=true;$('#wl-ok').textContent='Uniéndote…';
+    let r;try{await SHARING.cambiarMiNombre(n);r=await SHARING.aceptarInvitacion(inv.id)}catch(e){renderWelcome(e&&e.message||'No se ha podido aceptar.');return}
+    const nombre=inv.embudo;fin();closeModal();if(r&&r.embudo){irAEmbudo(r.embudo,`Ya formas parte de «${nombre}»`);return}await refreshShare();toast(`Ya formas parte de «${nombre}»`);
+  };
+}
+const haceCuanto=iso=>{if(!iso)return 'Sin actividad';const m=Math.round((Date.now()-new Date(iso))/6e4);if(m<2)return 'Activo hace un momento';if(m<60)return `Activo hace ${m} min`;const h=Math.round(m/60);if(h<24)return `Activo hace ${h} h`;const d=Math.round(h/24);return `Activo hace ${d} día${d>1?'s':''}`};
+// Solo para la demostración: reparte las tarjetas (fuera de la primera columna) entre los miembros activos
+function demoReparto(){
+  const ids=shareState.miembros.filter(m=>m.estado==='activo').map(m=>m.id);if(ids.length<2){shareUI.msg='Primero simula que alguien acepta una invitación.';renderShare();return}
+  let i=0;S.empresas.forEach(e=>{if(e.estado!==primeraActiva())e.dueno=ids[i++%ids.length]});
+  save();renderAll();shareUI.ok='Tarjetas repartidas. Las que no son tuyas ya no se pueden mover ni editar.';shareUI.msg='';renderShare();
+}
+async function doInvite(){
+  const list=String($('#sh-mail')?.value||'').split(/[\s,;]+/).filter(Boolean);
+  if(!list.length){shareUI.msg='Escribe al menos un email.';renderShare();$('#sh-mail')?.focus();return}
+  shareUI.busy=true;shareUI.msg='';shareUI.ok='';renderShare();
+  try{
+    const r=await SHARING.invitar(list,shareUI.rol);
+    const n=r.invitados.length;
+    shareUI.ok=n?(n===1?'1 invitación enviada.':`${n} invitaciones enviadas.`):'';
+    shareUI.msg=r.errores.map(e=>`${e.email}: ${e.motivo}`).join(' · ');
+    shareUI.emails=r.errores.map(e=>e.email).join(', ');
+  }catch(e){shareUI.msg=e&&e.message||'No se ha podido invitar.'}
+  shareUI.busy=false;await refreshShare();
 }
 
 /* ---------- Toast ---------- */
@@ -2021,6 +2805,8 @@ function fillCicloFilter(){
   sel.innerHTML=`<option value="">Todos los ciclos</option>`+((c&&c.opciones)||[]).map(o=>`<option ${o===fciclo?'selected':''}>${esc(o)}</option>`).join('');
 }
 function renderAll(){
+  if(!LISTO)return;
+  renderHeader();
   renderStats();
   $('#notice').hidden=!S.empresas.some(e=>e.ejemplo);
   $$('#tabs [data-cfgv]').forEach(b=>b.hidden=b.dataset.cfgv!==view);
@@ -2056,7 +2842,18 @@ try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}ca
 if('serviceWorker' in navigator&&location.protocol==='https:'&&!/claude/i.test(location.hostname))navigator.serviceWorker.register('sw.js').catch(()=>{});
 $('#ia').onclick=openAI;
 $$('[data-cfgtab]').forEach(b=>b.onclick=()=>openConfig(b.dataset.cfgtab));
+$('#addcol-tab').onclick=()=>openColForm();
+$('#addemp-tab').onclick=()=>nuevaEmpresa(primeraActiva());
 $('#exportar').onclick=openExport;
+try{const mg=sessionStorage.getItem('embudo-ffe-msg');if(mg){sessionStorage.removeItem('embudo-ffe-msg');setTimeout(()=>toast(mg,4000),300)}}catch(e){}
+$('#share').onclick=openShare;
+$('#mine').onclick=()=>{soloMias=!soloMias;PREFS.set('mias',soloMias?'1':'0');renderAll()};
+let bClickT;
+$('#bswitch').onclick=ev=>{ev.stopPropagation();clearTimeout(bClickT);if(ev.detail>1)return;bClickT=setTimeout(toggleBMenu,esProp()?230:0)};
+$('#bswitch').ondblclick=ev=>{ev.stopPropagation();clearTimeout(bClickT);if(!$('#bmenu').hidden)closeBMenu();editName()};
+$('#bmenu').addEventListener('click',ev=>ev.stopPropagation());
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('#bmenu').hidden){closeBMenu();$('#bswitch').focus()}});
+document.addEventListener('click',ev=>{const m=$('#bmenu');if(m&&!m.hidden&&!ev.target.closest('.bsel'))closeBMenu()});
 getSample();
 if(FEEDBACK_URL){$('#feedback').hidden=false;$('#feedback').onclick=openFeedback}
 getDownloads();
@@ -2068,7 +2865,24 @@ $('#stats').addEventListener('click',ev=>{const b=ev.target.closest('[data-go]')
 $('#view').addEventListener('click',ev=>{const c=ev.target.closest('.card');if(c)openDrawer(c.dataset.id)});
 $('#view').addEventListener('keydown',ev=>{const c=ev.target.closest('.card');if(c&&ev.key==='Enter'&&!ev.target.closest('button'))openDrawer(c.dataset.id)});
 window.addEventListener('hashchange',route);
-route();
+/* Arranque: carga el embudo abierto desde STORE y después pinta la página */
+async function iniciar(){
+  $('#view').innerHTML='<div class="loading-view" role="status"><span class="spin"></span><span>Cargando el embudo…</span></div>';
+  try{
+    const mios=await STORE.listarEmbudos();
+    if(!esCompartido(ACTUAL)&&!mios.some(b=>b.id===ACTUAL)){ACTUAL='principal';PREFS.set('actual',ACTUAL)}
+    SHARING.usarEmbudo(ACTUAL);
+    const d=await STORE.cargar(ACTUAL);
+    if(!d&&esCompartido(ACTUAL)){PREFS.set('actual','principal');location.reload();return}
+    S=normalizar(d);
+  }catch(e){
+    $('#view').innerHTML='<div class="loading-view err-view" role="alert">No se ha podido cargar el embudo. Comprueba la conexión y vuelve a intentarlo.</div>';return;
+  }
+  lastSnap=JSON.stringify(S);past=[];future=[];updUndo();
+  LISTO=true;fillCicloFilter();route();refreshShare().then(checkInvitacion);
+  STORE.suscribir(async id=>{if(id!==ACTUAL)return;const d=await STORE.cargar(id);if(!d)return;S=normalizar(d);lastSnap=JSON.stringify(S);renderAll();if(openId&&byId(openId))openDrawer(openId)});
+}
+iniciar();
 </script>
 
 </body></html>
