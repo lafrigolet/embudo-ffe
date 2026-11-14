@@ -136,6 +136,13 @@ th .arr{color:var(--accent)}
 .card-del:hover{background:var(--danger-soft);color:var(--danger)}
 header.top{position:sticky;top:0;z-index:15;background:var(--bg);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));padding-top:calc(18px + env(safe-area-inset-top,0px));margin-top:calc(-1 * env(safe-area-inset-top,0px));transition:box-shadow .2s,padding .2s}
 header.top.stuck{box-shadow:0 1px 0 var(--line),0 6px 16px rgba(20,33,31,.08);padding-bottom:10px}
+.fb-opts{display:flex;flex-wrap:wrap;gap:6px}
+.fb-opts button,.fb-scale button{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 12px;font-size:13px}
+.fb-opts button[aria-checked="true"],.fb-scale button[aria-checked="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.fb-scale{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.fb-scale span{font-size:12px;color:var(--muted)}
+.fb-scale button{width:38px;height:38px;padding:0;border-radius:50%;font-weight:600}
+#fb-t{border:1px solid var(--line);border-radius:7px;padding:8px 10px;background:var(--surface);width:100%;resize:vertical;min-height:110px}
 .drop-line{flex:none;height:3px;margin:-5.5px 2px;border-radius:2px;background:var(--accent)}
 .fmt{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .fmt button{text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);display:flex;flex-direction:column;gap:3px;font-weight:600}
@@ -330,6 +337,7 @@ aside.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);backgro
       <button class="btn icon" id="importar" aria-label="Importar Excel o CSV" data-tip="Importar Excel o CSV"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v3h16v-3"/></svg></button>
       <button class="btn icon" id="ia" aria-label="Añadir empresas con IA" data-tip="Añadir empresas con IA"><svg viewBox="0 0 24 24"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></button>
       <button class="btn icon" id="exportar" aria-label="Exportar a Excel o CSV" data-tip="Exportar a Excel o CSV"><svg viewBox="0 0 24 24"><path d="M12 15V3m0 0L8 7m4-4 4 4M4 17v3h16v-3"/></svg></button>
+      <button class="btn icon" id="feedback" aria-label="Enviar un comentario" data-tip="Enviar un comentario" hidden><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></button>
       <span class="hist"><button class="btn icon" id="undo" aria-label="Deshacer" disabled><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button><button class="btn icon" id="redo" aria-label="Rehacer" disabled><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button></span>
     </div>
   </header>
@@ -1523,13 +1531,16 @@ function aiDatos(r){
   const out=aiCampos().map(c=>{let v=r[c.key];if(Array.isArray(v))v=v.join(', ');v=String(v??'').trim();return v?`<div class="sub"><b style="color:var(--ink);font-weight:500">${esc(c.label)}:</b> ${esc(v)}</div>`:''}).join('');
   return out||'<span class="sub">—</span>';
 }
+const aiTxt=w=>w
+  ?{l:'Describe qué empresas buscas',p:'Ej.: empresas de desarrollo web en Pamplona que puedan acoger alumnado de DAW. La IA buscará en internet.'}
+  :{l:'Pega el texto con los datos de las empresas',p:'Pega aquí un correo, una lista copiada de un PDF o el texto de una web. La IA solo usará lo que haya en este texto, sin buscar en internet.'};
 function renderAI(){
   const m=$('#modal'),cfg=aiCfg(),n=ai.sel.size,load=ai.status==='loading';
   if(!ai.fase||!fase(ai.fase))ai.fase=primeraActiva();
   m.innerHTML=`<div class="m-head"><h2>Añadir empresas con IA</h2><button class="btn ghost" data-close aria-label="Cerrar">✕</button></div>
     <div class="m-body">
-      <div class="field"><label for="ai-q">Qué empresas buscas, o pega un texto con datos de empresas</label>
-        <textarea id="ai-q" class="ai-q" ${load?'disabled':''} placeholder="Ej.: empresas de desarrollo web en Pamplona que puedan acoger alumnado de DAW&#10;O pega aquí un correo, una lista o el texto de una web">${esc(ai.q)}</textarea></div>
+      <div class="field"><label for="ai-q" id="ai-ql">${esc(aiTxt(ai.web).l)}</label>
+        <textarea id="ai-q" class="ai-q" ${load?'disabled':''} placeholder="${esc(aiTxt(ai.web).p)}">${esc(ai.q)}</textarea></div>
       <div class="ai-row">
         <label class="chkline"><input type="checkbox" id="ai-web" ${ai.web?'checked':''} ${load?'disabled':''}> Buscar en internet</label>
         <label class="chkline">Máximo <input type="number" class="ai-max" id="ai-max" min="1" max="${AI_MAX}" value="${ai.max}" ${load?'disabled':''}> empresas</label>
@@ -1549,7 +1560,7 @@ function renderAI(){
   $('#ai-go').onclick=runAI;
   $('#ai-q').oninput=ev=>ai.q=ev.target.value;
   $('#ai-q').onkeydown=ev=>{if(ev.key==='Enter'&&(ev.ctrlKey||ev.metaKey)){ev.preventDefault();runAI()}};
-  $('#ai-web').onchange=ev=>{ai.web=ev.target.checked;$('#ai-go').textContent=ai.web?'Buscar':'Extraer'};
+  $('#ai-web').onchange=ev=>{ai.web=ev.target.checked;$('#ai-go').textContent=ai.web?'Buscar':'Extraer';const t=aiTxt(ai.web);$('#ai-ql').textContent=t.l;$('#ai-q').placeholder=t.p};
   $('#ai-max').onchange=ev=>{ai.max=Math.max(1,Math.min(AI_MAX,parseInt(ev.target.value,10)||10));ev.target.value=ai.max};
   $('#ai-cancel')?.addEventListener('click',()=>{if(ai.ctrl)ai.ctrl.abort();ai.ctrl=null;ai.status='idle';renderAI()});
   $('#ai-key').onclick=()=>openAIKey();
@@ -1655,6 +1666,68 @@ function addAI(){
   toast(`${n} empresa${n===1?'':'s'} añadida${n===1?'':'s'} a «${label(f)}»`,6000,UNDO);
 }
 
+/* ---------- Comentarios (Google Forms) ---------- */
+// Pega entre las comillas el enlace de tu formulario de Google (el que acaba en /viewform). Si está vacío, el botón no aparece.
+const FEEDBACK_URL='https://docs.google.com/forms/d/e/1FAIpQLSfAoD0mYREHe7pNBmpxWmiqe4Pwh3eDttVUEcjFBjhgA9aLgA/viewform';
+// Códigos de las preguntas del formulario (si cambias las preguntas en Google Forms, hay que actualizarlos)
+const FB={
+  action:FEEDBACK_URL.replace(/\/viewform.*$/,'/formResponse'),
+  texto:'entry.1632277956',
+  tipo:'entry.1342942151',tipos:['Algo no funciona','Una idea o mejora','Otro'],
+  nota:'entry.599795435',escala:['Poco','Mucho']
+};
+let fb={texto:'',tipo:'',nota:'',status:'idle'};
+function openFeedback(){modalKind='feedback';if(fb.status!=='sending')fb.status=fb.status==='sent'?'idle':fb.status;renderFeedback();showModal();setTimeout(()=>$('#fb-t')?.focus(),30)}
+function renderFeedback(err){
+  const m=$('#modal'),close=`<button class="btn ghost" data-close aria-label="Cerrar">✕</button>`;
+  if(fb.status==='sent'){
+    m.innerHTML=`<div class="m-head"><h2>¡Gracias!</h2>${close}</div>
+      <div class="m-body"><div class="ok-box" style="font-size:14px">Tu comentario se ha enviado.</div>
+      <p class="m-hint">Lo leeremos con calma. Si quieres contar algo más, puedes enviar otro.</p></div>
+      <div class="m-foot"><button class="btn" id="fb-new">Enviar otro</button><button class="btn primary" data-close>Cerrar</button></div>`;
+    m.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);
+    $('#fb-new').onclick=()=>{fb.status='idle';renderFeedback();$('#fb-t')?.focus()};
+    return;
+  }
+  const sending=fb.status==='sending';
+  m.innerHTML=`<div class="m-head"><h2>Enviar un comentario</h2>${close}</div>
+    <div class="m-body">
+      ${err?`<div class="err" role="alert">${esc(err)}</div>`:''}
+      <p class="m-hint">Cuéntanos qué falla, qué echas de menos o qué mejorarías. Llega directamente a quien mantiene esta herramienta.</p>
+      <div class="field"><span class="lab" id="fb-tl">Tipo de comentario *</span>
+        <div class="fb-opts" role="radiogroup" aria-labelledby="fb-tl">${FB.tipos.map(t=>`<button type="button" role="radio" aria-checked="${fb.tipo===t}" data-fbtipo="${esc(t)}" ${sending?'disabled':''}>${esc(t)}</button>`).join('')}</div></div>
+      <div class="field"><label for="fb-t">¿Qué nos quieres contar? *</label>
+        <textarea id="fb-t" rows="5" ${sending?'disabled':''} placeholder="Ej.: al importar mi Excel no reconoce la columna de teléfonos">${esc(fb.texto)}</textarea></div>
+      <div class="field"><span class="lab" id="fb-nl">¿Cuánto te ayuda la herramienta? (opcional)</span>
+        <div class="fb-scale" role="radiogroup" aria-labelledby="fb-nl"><span>${esc(FB.escala[0])}</span>${[1,2,3,4,5].map(n=>`<button type="button" role="radio" aria-checked="${String(fb.nota)===String(n)}" data-fbnota="${n}" ${sending?'disabled':''}>${n}</button>`).join('')}<span>${esc(FB.escala[1])}</span></div></div>
+    </div>
+    <div class="m-foot">${fb.failed?`<a class="btn" id="fb-gf" href="${esc(FEEDBACK_URL)}" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Terminar en Google Forms ↗</a>`:'<span></span>'}<button class="btn primary" id="fb-send" ${sending?'disabled':''}>${sending?'Enviando…':'Enviar comentario'}</button></div>`;
+  m.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);
+  m.querySelectorAll('[data-fbtipo]').forEach(b=>b.onclick=()=>{fb.tipo=b.dataset.fbtipo;m.querySelectorAll('[data-fbtipo]').forEach(x=>x.setAttribute('aria-checked',String(x===b)))});
+  m.querySelectorAll('[data-fbnota]').forEach(b=>b.onclick=()=>{fb.nota=String(fb.nota)===b.dataset.fbnota?'':b.dataset.fbnota;m.querySelectorAll('[data-fbnota]').forEach(x=>x.setAttribute('aria-checked',String(x.dataset.fbnota===String(fb.nota))))});
+  $('#fb-t').oninput=ev=>fb.texto=ev.target.value;
+  $('#fb-send').onclick=sendFeedback;
+  const gf=$('#fb-gf');if(gf)gf.onclick=()=>{gf.href=fbPrefill()};
+}
+// Enlace al formulario de Google con lo escrito ya rellenado
+function fbPrefill(){
+  const u=new URLSearchParams({usp:'pp_url'}),t=($('#fb-t')?.value||fb.texto||'').trim();
+  if(t)u.append(FB.texto,t);if(fb.tipo)u.append(FB.tipo,fb.tipo);if(fb.nota)u.append(FB.nota,String(fb.nota));
+  return FEEDBACK_URL+'?'+u.toString();
+}
+async function sendFeedback(){
+  fb.texto=($('#fb-t')?.value||'').trim();
+  if(!fb.tipo){renderFeedback('Elige el tipo de comentario.');return}
+  if(!fb.texto){renderFeedback('Escribe tu comentario.');$('#fb-t')?.focus();return}
+  fb.status='sending';renderFeedback();
+  const body=new URLSearchParams();
+  body.append(FB.texto,fb.texto);body.append(FB.tipo,fb.tipo);if(fb.nota)body.append(FB.nota,String(fb.nota));
+  try{await fetch(FB.action,{method:'POST',mode:'no-cors',body})}
+  catch(e){fb.status='idle';fb.failed=true;if(modalKind==='feedback')renderFeedback('No se ha podido enviar desde aquí. Pulsa «Terminar en Google Forms»: se abrirá con tu comentario ya escrito y solo tendrás que pulsar Enviar.');return}
+  fb={texto:'',tipo:'',nota:'',status:'sent'};
+  if(modalKind==='feedback')renderFeedback();else toast('Comentario enviado. ¡Gracias!');
+}
+
 /* ---------- Toast ---------- */
 let toastT;
 function toast(m,ms=2600,act){
@@ -1726,6 +1799,7 @@ addEventListener('scroll',()=>$('header.top').classList.toggle('stuck',scrollY>4
 $('#ia').onclick=openAI;
 $$('[data-cfgtab]').forEach(b=>b.onclick=()=>openConfig(b.dataset.cfgtab));
 $('#exportar').onclick=openExport;
+if(FEEDBACK_URL){$('#feedback').hidden=false;$('#feedback').onclick=openFeedback}
 getDownloads();
 $('#vaciar').onclick=()=>{S.empresas=S.empresas.filter(e=>!e.ejemplo);save();renderAll();toast('Ejemplos quitados',6000,UNDO)};
 $('#overlay').onclick=()=>closeDrawer();
